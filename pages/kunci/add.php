@@ -1,16 +1,16 @@
 <?php
 require 'function.php';
 
-$setor = mysqli_query($conn, "SELECT t_kos, COUNT(*) as total, 
-                                    COUNT(CASE WHEN ket = 0 THEN 1 END) bayar,
-                                    COUNT(CASE WHEN ket = 1 THEN 1 END) ustd,
-                                    COUNT(CASE WHEN ket = 2 THEN 1 END) khaddam,
-                                    COUNT(CASE WHEN ket = 3 THEN 1 END) gratis,
-                                    COUNT(CASE WHEN ket = 4 THEN 1 END) mhs 
-                                    FROM tb_santri WHERE aktif = 'Y' GROUP BY t_kos");
+$setor = mysqli_query($conn, "SELECT a.t_kos, COUNT(*) as total, b.nama, 
+                                    COUNT(CASE WHEN a.ket = 0 THEN 1 END) bayar,
+                                    COUNT(CASE WHEN a.ket = 1 THEN 1 END) ustd,
+                                    COUNT(CASE WHEN a.ket = 2 THEN 1 END) khaddam,
+                                    COUNT(CASE WHEN a.ket = 3 THEN 1 END) gratis,
+                                    COUNT(CASE WHEN a.ket = 4 THEN 1 END) mhs 
+                                    FROM tb_santri a JOIN tempat b ON a.t_kos=b.kd_tmp WHERE a.aktif = 'Y' GROUP BY a.t_kos");
 
 $bl = array("-", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");
-$tt = array('Dak ada', 'Ny. Jamilah', 'Gus Zaini', 'Ny. Farihah', 'Ny. Zahro', 'Ny. Saadah', 'Ny. Mamjudah', 'Ny. Naili', 'Ny. Lathifah');
+
 ?>
 <section class="content-header">
     <h1><span class="fa fa-cutlery"> </span>
@@ -85,7 +85,7 @@ $tt = array('Dak ada', 'Ny. Jamilah', 'Gus Zaini', 'Ny. Farihah', 'Ny. Zahro', '
                                 while ($r = mysqli_fetch_assoc($setor)) { ?>
                                     <tr>
                                         <td><?= $i++ ?></td>
-                                        <td><?= $tt[$r['t_kos']] ?></td>
+                                        <td><?= $r['nama'] ?></td>
                                         <td><?= $r['bayar'] ?></td>
                                         <td><?= $r['ustd'] ?></td>
                                         <td><?= $r['gratis'] ?></td>
