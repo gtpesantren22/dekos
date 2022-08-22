@@ -208,6 +208,8 @@ $level = $_SESSION['level'];
                                     Perdokosan</a></li>
                             <li><a href="index.php?link=pages/dekos/cek_kos2"><i class="fas fa-ribbon"></i>
                                     Semua Santri</a></li>
+                            <li><a href="index.php?link=pages/dekos/kirim_info"><i class="fas fa-ribbon"></i>
+                                    Kirim Info</a></li>
                         </ul>
                     </li>
                     <li><a href="index.php?link=pages/dekos/persen4"><i class="fa fa-percent"></i> <span>Persentase</span></a></li>
