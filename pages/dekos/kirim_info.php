@@ -213,7 +213,7 @@ Masih memiliki Tanggungan tahun pelajaran 2021/2022, dengan rincian sebagai beri
     Total          : Rp. ' . number_format($total, 0, ',', '.') . '
 
 *Dimohon untuk melunasi tanggungan tersebut*
-*Jika sudah melunasi diharapkan untuk mengkonfirmasinya*
+*Jika sudah melunasi diharapkan untuk mengkonfirmasinya ke no berikut https://wa.me/6287757777273 atas nama Ust. Rizal Asayadi Mochtar*
 
 *Atas perhatiannya kami sampaikan Terimakasih*
         ';
