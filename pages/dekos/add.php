@@ -1,6 +1,6 @@
 <?php
 require 'function.php';
-$santri =  query("SELECT * FROM tb_santri WHERE aktif = 'Y' ORDER by nis ASC");
+$santri =  query("SELECT * FROM tb_santri  ORDER by nis ASC");
 // if (isset($_POST["simpan"])) {
 //     if (add_dekos($_POST) > 0) {
 //         echo "
@@ -435,47 +435,46 @@ if (isset($_POST['save'])) {
             $penerima = '*' . mysqli_real_escape_string($conn, $thn['penerima']);
             $spasi = ' ';
             $alamat = '*' . $desa . $spasi . $kec . $spasi . $kab . '*';
-            
+
             $pesan = '
             _(Ini adalah pesan otomatis dari sistem)_
 *Assalamualaikum Wr. Wb*
 Kami dari *Pengurus dekosan* santri Pesantren Darul Lughah Wal Karomah
 menginfokan bahwa data dibawah ini : 
 
-Nama : '.$nama.'
-Alamat : '.$alamat.'
-Nominal Pembayaran: '.$nominal.'
-Tanggal Bayar : '.$tgl_bayar.'
-Pembayaran Untuk: '.$bulan.'
-Penerima: '.$penerima.'*
-Keterangan : *'.$kt.'*
+Nama : ' . $nama . '
+Alamat : ' . $alamat . '
+Nominal Pembayaran: ' . $nominal . '
+Tanggal Bayar : ' . $tgl_bayar . '
+Pembayaran Untuk: ' . $bulan . '
+Penerima: ' . $penerima . '*
+Keterangan : *' . $kt . '*
 
 _*- Pesan ini bisa disimpan sebagai bukti pembayaran*_
 *Terimakasih*';
         }
-        
+
         echo "
         <script>
         alert('Pembayaran berhasil');
         window.location = 'index.php?link=pages/dekos/add' ;
         </script>";
-        
+
         $url = 'https://app.whacenter.com/api/send';
-            $ch = curl_init($url);
-            // $pesan = $pesan;
-            $data = array(
-                'device_id' => 'ba05119ba4157d8214272d38ceeef5a0',
-                'number' => $hp,
-                // 'number' => '085236924510',
-                'message' => $pesan,
-        
-            );
-            $payload = $data;
-            curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-            $result = curl_exec($ch);
-            curl_close($ch);   
-       
+        $ch = curl_init($url);
+        // $pesan = $pesan;
+        $data = array(
+            'device_id' => 'ba05119ba4157d8214272d38ceeef5a0',
+            'number' => $hp,
+            // 'number' => '085236924510',
+            'message' => $pesan,
+
+        );
+        $payload = $data;
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $result = curl_exec($ch);
+        curl_close($ch);
     } else {
         echo "
         <script>
