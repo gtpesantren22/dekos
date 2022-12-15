@@ -181,7 +181,21 @@ $level = $_SESSION['level'];
                             </li>
                         </ul>
                     </li>
-                    <li><a href="index.php?link=pages/dekos/dekos"><i class="fa fa-list"></i> <span>Data Dekosan</span></a></li>
+                    <!-- <li><a href="index.php?link=pages/dekos/dekos"><i class="fa fa-list"></i> <span>Data
+                                Dekosan</span></a>
+                    </li> -->
+                    <li class="treeview">
+                        <a href="#">
+                            <i class="fa fa-list"></i> <span> Data Dekosan</span>
+                            <i class="fa fa-angle-left pull-right"></i>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li><a href="index.php?link=pages/dekos/dekos"><i class="fas fa-ribbon"></i>
+                                    Input Setoran</a></li>
+                            <li><a href="index.php?link=pages/dekos/roll"><i class="fas fa-ribbon"></i>
+                                    Rolling Data</a></li>
+                        </ul>
+                    </li>
                     <li class="treeview">
                         <a href="#">
                             <i class="fa fa-cash-register"></i> <span> Setoran</span>
@@ -212,15 +226,17 @@ $level = $_SESSION['level'];
                                     Kirim Info</a></li>
                         </ul>
                     </li>
-                    <li><a href="index.php?link=pages/dekos/persen4"><i class="fa fa-percent"></i> <span>Persentase</span></a></li>
-                    <li><a href="index.php?link=pages/kunci/data"><i class="fa fa-key"></i> <span>Data Jumlah Kunci</span></a></li>
+                    <li><a href="index.php?link=pages/dekos/persen4"><i class="fa fa-percent"></i>
+                            <span>Persentase</span></a></li>
+                    <li><a href="index.php?link=pages/kunci/data"><i class="fa fa-key"></i> <span>Data Jumlah
+                                Kunci</span></a></li>
 
                     <?php if ($level == 'admin') { ?>
-                        <li>
-                            <a href="index.php?link=pages/set">
-                                <i class="fa fa-window-restore"></i> <span>Backup & Restore</span>
-                            </a>
-                        </li>
+                    <li>
+                        <a href="index.php?link=pages/set">
+                            <i class="fa fa-window-restore"></i> <span>Backup & Restore</span>
+                        </a>
+                    </li>
                     <?php } ?>
                     <li class="header">LABELS</li>
                     <li><a href="index.php?link=pages/info/info"><i class="fa fa-exclamation-triangle text-green"></i>
@@ -255,66 +271,66 @@ $level = $_SESSION['level'];
 
     </div><!-- ./wrapper -->
     <script>
-        $(function() {
-            //Initialize Select2 Elements
-            $(".select2").select2();
-            //Date range picker
-            $('#reservation').daterangepicker();
-            //Date picker
-            $('#datepic').datepicker();
+    $(function() {
+        //Initialize Select2 Elements
+        $(".select2").select2();
+        //Date range picker
+        $('#reservation').daterangepicker();
+        //Date picker
+        $('#datepic').datepicker();
 
-        });
+    });
     </script>
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('#myModal').on('show.bs.modal', function(e) {
-                var rowid = $(e.relatedTarget).data('id');
-                //menggunakan fungsi ajax untuk pengambilan data
-                $.ajax({
-                    type: 'post',
-                    url: 'e_tahapan.php',
-                    data: 'rowid=' + rowid,
-                    success: function(data) {
-                        $('.fetched-data').html(data); //menampilkan data ke dalam modal
-                    }
-                });
+    $(document).ready(function() {
+        $('#myModal').on('show.bs.modal', function(e) {
+            var rowid = $(e.relatedTarget).data('id');
+            //menggunakan fungsi ajax untuk pengambilan data
+            $.ajax({
+                type: 'post',
+                url: 'e_tahapan.php',
+                data: 'rowid=' + rowid,
+                success: function(data) {
+                    $('.fetched-data').html(data); //menampilkan data ke dalam modal
+                }
             });
         });
+    });
     </script>
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('#hapus').on('show.bs.modal', function(e) {
-                var rowid = $(e.relatedTarget).data('id');
-                //menggunakan fungsi ajax untuk pengambilan data
-                $.ajax({
-                    type: 'post',
-                    url: 'del_tahapan.php',
-                    data: 'rowid=' + rowid,
-                    success: function(data) {
-                        $('.fetched-data').html(data); //menampilkan data ke dalam modal
-                    }
-                });
+    $(document).ready(function() {
+        $('#hapus').on('show.bs.modal', function(e) {
+            var rowid = $(e.relatedTarget).data('id');
+            //menggunakan fungsi ajax untuk pengambilan data
+            $.ajax({
+                type: 'post',
+                url: 'del_tahapan.php',
+                data: 'rowid=' + rowid,
+                success: function(data) {
+                    $('.fetched-data').html(data); //menampilkan data ke dalam modal
+                }
             });
         });
+    });
     </script>
     <script>
-        $(document).ready(function() {
-            $("#t_formal").change(function() {
-                var t_formal = $("#t_formal").val();
-                $.ajax({
-                    type: 'POST',
-                    url: "ajax/get_kelas.php",
-                    data: {
-                        t_formal: t_formal
-                    },
-                    cache: false,
-                    success: function(msg) {
-                        $("#k_formal").html(msg);
-                    }
-                });
+    $(document).ready(function() {
+        $("#t_formal").change(function() {
+            var t_formal = $("#t_formal").val();
+            $.ajax({
+                type: 'POST',
+                url: "ajax/get_kelas.php",
+                data: {
+                    t_formal: t_formal
+                },
+                cache: false,
+                success: function(msg) {
+                    $("#k_formal").html(msg);
+                }
             });
         });
+    });
     </script>
     <script src="jquery-2.2.4.min.js"></script> <!-- Load library jquery -->
     <script src="process.js"></script> <!-- Load file process.js -->
@@ -358,118 +374,118 @@ $level = $_SESSION['level'];
     <script src="dist/js/demo.js"></script>
 
     <script type="text/javascript">
-        var rupiah = document.getElementById('rupiah');
-        rupiah.addEventListener('keyup', function(e) {
-            // tambahkan 'Rp.' pada saat form di ketik
-            // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
-            rupiah.value = formatRupiah(this.value, 'Rp. ');
-        });
+    var rupiah = document.getElementById('rupiah');
+    rupiah.addEventListener('keyup', function(e) {
+        // tambahkan 'Rp.' pada saat form di ketik
+        // gunakan fungsi formatRupiah() untuk mengubah angka yang di ketik menjadi format angka
+        rupiah.value = formatRupiah(this.value, 'Rp. ');
+    });
 
-        /* Fungsi formatRupiah */
-        function formatRupiah(angka, prefix) {
-            var number_string = angka.replace(/[^,\d]/g, '').toString(),
-                split = number_string.split(','),
-                sisa = split[0].length % 3,
-                rupiah = split[0].substr(0, sisa),
-                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+    /* Fungsi formatRupiah */
+    function formatRupiah(angka, prefix) {
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+            split = number_string.split(','),
+            sisa = split[0].length % 3,
+            rupiah = split[0].substr(0, sisa),
+            ribuan = split[0].substr(sisa).match(/\d{3}/gi);
 
-            // tambahkan titik jika yang di input sudah menjadi angka ribuan
-            if (ribuan) {
-                separator = sisa ? '.' : '';
-                rupiah += separator + ribuan.join('.');
-            }
-
-            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
-            return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+        // tambahkan titik jika yang di input sudah menjadi angka ribuan
+        if (ribuan) {
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
         }
+
+        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+        return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+    }
     </script>
     <script>
-        $(function() {
-            $("#example1").DataTable();
-            $("#example1_bst").DataTable();
-            $("#example2_bst").DataTable();
-            $("#example3_bst").DataTable();
-            $('#example2').DataTable({
-                "paging": true,
-                "lengthChange": false,
-                "searching": false,
-                "ordering": true,
-                "info": true,
-                "autoWidth": false
-            });
-        });
-    </script>
-    <script>
-        // function in berfungsi untuk memindahkan data kolom yang di klik menuju text box
-        function masuk(txt, data) {
-            document.getElementById('nis').value = data; // ini berfungsi mengisi value yang ber id textbox
-            $("#tambah").modal('hide'); // ini berfungsi untuk menyembunyikan modal
-        }
+    $(function() {
+        $("#example1").DataTable();
         $("#example1_bst").DataTable();
         $("#example2_bst").DataTable();
         $("#example3_bst").DataTable();
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false
+        });
+    });
     </script>
     <script>
-        $.widget.bridge('uibutton', $.ui.button);
+    // function in berfungsi untuk memindahkan data kolom yang di klik menuju text box
+    function masuk(txt, data) {
+        document.getElementById('nis').value = data; // ini berfungsi mengisi value yang ber id textbox
+        $("#tambah").modal('hide'); // ini berfungsi untuk menyembunyikan modal
+    }
+    $("#example1_bst").DataTable();
+    $("#example2_bst").DataTable();
+    $("#example3_bst").DataTable();
+    </script>
+    <script>
+    $.widget.bridge('uibutton', $.ui.button);
     </script>
 
 
 
     <!-- page script -->
     <script>
-        $(function() {
-            /* ChartJS
-             * -------
-             * Here we will create a few charts using ChartJS
-             */
-            //-------------
-            //BAR CHART
-            var bar = new Morris.Bar({
-                element: 'bar-chart',
-                resize: true,
-                data: [{
-                        y: '2006',
-                        a: 100,
-                        b: 90
-                    },
-                    {
-                        y: '2007',
-                        a: 75,
-                        b: 65
-                    },
-                    {
-                        y: '2008',
-                        a: 50,
-                        b: 40
-                    },
-                    {
-                        y: '2009',
-                        a: 75,
-                        b: 65
-                    },
-                    {
-                        y: '2010',
-                        a: 50,
-                        b: 40
-                    },
-                    {
-                        y: '2011',
-                        a: 75,
-                        b: 65
-                    },
-                    {
-                        y: '2012',
-                        a: 100,
-                        b: 90
-                    }
-                ],
-                barColors: ['#00a65a', '#f56954'],
-                xkey: 'y',
-                ykeys: ['a', 'b'],
-                labels: ['CPU', 'DISK'],
-                hideHover: 'auto'
-            });
+    $(function() {
+        /* ChartJS
+         * -------
+         * Here we will create a few charts using ChartJS
+         */
+        //-------------
+        //BAR CHART
+        var bar = new Morris.Bar({
+            element: 'bar-chart',
+            resize: true,
+            data: [{
+                    y: '2006',
+                    a: 100,
+                    b: 90
+                },
+                {
+                    y: '2007',
+                    a: 75,
+                    b: 65
+                },
+                {
+                    y: '2008',
+                    a: 50,
+                    b: 40
+                },
+                {
+                    y: '2009',
+                    a: 75,
+                    b: 65
+                },
+                {
+                    y: '2010',
+                    a: 50,
+                    b: 40
+                },
+                {
+                    y: '2011',
+                    a: 75,
+                    b: 65
+                },
+                {
+                    y: '2012',
+                    a: 100,
+                    b: 90
+                }
+            ],
+            barColors: ['#00a65a', '#f56954'],
+            xkey: 'y',
+            ykeys: ['a', 'b'],
+            labels: ['CPU', 'DISK'],
+            hideHover: 'auto'
         });
+    });
     </script>
     <!-- daterangepicker -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
