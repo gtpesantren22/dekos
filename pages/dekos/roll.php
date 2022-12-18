@@ -1,8 +1,11 @@
 <?php
 require 'function.php';
-$santri =  query("SELECT t_kos, COUNT(t_kos) AS jml FROM tb_santri WHERE aktif = 'Y' GROUP BY t_kos HAVING jml > 1 ");
+$santri =  query("SELECT t_kos, COUNT(t_kos) AS jml FROM tb_santri WHERE aktif = 'Y' AND ket = 0 GROUP BY t_kos HAVING jml > 1 ");
 $smnt =  query("SELECT t_kos, COUNT(t_kos) AS jml FROM kosmen GROUP BY t_kos HAVING jml > 1 ");
 $tt = array('Dak ada', 'Ny. Jamilah', 'Gus Zaini', 'Ny. Farihah', 'Ny. Zahro', 'Ny. Saadah', 'Ny. Mamjudah', 'Ny. Naili', 'Ny. Lathifah', 'Ny. Umi Kultsum');
+
+$jmlSntri = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM tb_santri WHERE ket = 0 AND aktif = 'Y' "));
+$jmlKosn = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM kosmen "));
 ?>
 <section class="content-header">
     <h1>
@@ -23,14 +26,6 @@ $tt = array('Dak ada', 'Ny. Jamilah', 'Gus Zaini', 'Ny. Farihah', 'Ny. Zahro', '
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Rolling Data Dekosan</h3>
-                    <!-- <a href="index.php?link=pages/add" type="button" class="btn btn-success pull-right"><span
-                            class="fa fa-plus-circle">
-                        </span>
-                        Tambah Data</a>
-                    <a href="pages/excel2.php" target="_blank" type="button" class="btn btn-warning pull-right"><span
-                            class="fa fa-download">
-                        </span>
-                        Download Data</a> -->
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <div class="table-responsive">
@@ -70,6 +65,12 @@ $tt = array('Dak ada', 'Ny. Jamilah', 'Gus Zaini', 'Ny. Farihah', 'Ny. Zahro', '
                                 </tr>
                                 <?php endforeach; ?>
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th colspan="2">TOTAL</th>
+                                    <th colspan="2"><?= $jmlSntri; ?> </th>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
 
@@ -80,6 +81,13 @@ $tt = array('Dak ada', 'Ny. Jamilah', 'Gus Zaini', 'Ny. Farihah', 'Ny. Zahro', '
             <div class="box">
                 <div class="box-header">
                     <h3 class="box-title">Hasil Rolling Sementara Data Dekosan</h3>
+                    <form action="" method="post">
+                        <button type="submit" name="dekos" class="btn btn-primary btn-sm pull-right">Simpan ke Data
+                            Santri
+                            (Dekosan)</button>
+                        <button type="submit" name="ddpontren" class="btn btn-warning btn-sm pull-right">Simpan ke Data
+                            Santri (D'Pontren)</button>
+                    </form>
                     <div class="box-body">
                         <div class="table-responsive">
                             <table id="example2" class="table table-bordered table-striped">
@@ -113,6 +121,12 @@ $tt = array('Dak ada', 'Ny. Jamilah', 'Gus Zaini', 'Ny. Farihah', 'Ny. Zahro', '
                                     </tr>
                                     <?php endforeach; ?>
                                 </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="2">TOTAL</th>
+                                        <th colspan="2"><?= $jmlKosn; ?> </th>
+                                    </tr>
+                                </tfoot>
                             </table>
                         </div>
 
@@ -152,7 +166,7 @@ if (isset($_POST['pindah'])) {
         </script>
         ";
     } else {
-        $sql = mysqli_query($conn, "INSERT INTO kosmen (nis, t_kos, bulan, tahun) SELECT nis, $t_kos, $bulan, $tahun FROM tb_santri WHERE t_kos = $asal AND aktif = 'Y' ");
+        $sql = mysqli_query($conn, "INSERT INTO kosmen (nis, t_kos, bulan, tahun) SELECT nis, $t_kos, $bulan, $tahun FROM tb_santri WHERE t_kos = $asal AND ket = 0 AND aktif = 'Y' ");
         if ($sql) {
             echo "
         <script>
@@ -162,6 +176,9 @@ if (isset($_POST['pindah'])) {
         ";
         }
     }
+}
+
+if (isset($_POST[''])) {
 }
 
 ?>
