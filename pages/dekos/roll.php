@@ -1,7 +1,7 @@
 <?php
 require 'function.php';
 $santri =  query("SELECT t_kos, COUNT(t_kos) AS jml FROM tb_santri WHERE aktif = 'Y' AND ket = 0 GROUP BY t_kos HAVING jml > 0 ");
-$smnt =  query("SELECT t_kos, COUNT(t_kos) AS jml FROM kosmen GROUP BY t_kos HAVING jml > 1 ");
+$smnt =  query("SELECT t_kos, COUNT(t_kos) AS jml FROM kosmen GROUP BY t_kos HAVING jml > 0 ");
 $tt = array('Dak ada', 'Ny. Jamilah', 'Gus Zaini', 'Ny. Farihah', 'Ny. Zahro', 'Ny. Saadah', 'Ny. Mamjudah', 'Ny. Naili', 'Ny. Lathifah', 'Ny. Umi Kultsum');
 
 $jmlSntri = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM tb_santri WHERE ket = 0 AND aktif = 'Y' "));
