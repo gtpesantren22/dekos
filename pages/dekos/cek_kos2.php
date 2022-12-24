@@ -73,8 +73,8 @@ require 'function.php';
                                     while ($thn = mysqli_fetch_array($th)) {
                                         $no++;
                                     ?>
-                                        <option value="<?= $thn['nama'] ?>"><?= $thn['nama'] ?>
-                                        </option>
+                                    <option value="<?= $thn['nama'] ?>"><?= $thn['nama'] ?>
+                                    </option>
                                     <?php
                                     }
                                     ?>
@@ -142,71 +142,73 @@ require 'function.php';
                 $data = mysqli_query($conn, "SELECT * FROM rekap2 WHERE NOT EXISTS (SELECT * FROM rekap WHERE rekap2.nis = rekap.nis) ");
             }
         ?>
-            <form action="" method="post">
-                <div class="col-md-12">
-                    <div class="box box-primary">
-                        <div class="box-header">
-                            <h3 class="box-title">
-                                Data dari :
-                                <br />
-                                <br />
-                                <?php if ($stts == 1) {
+        <form action="" method="post">
+            <div class="col-md-12">
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h3 class="box-title">
+                            Data dari :
+                            <br />
+                            <br />
+                            <?php if ($stts == 1) {
                                     $st = "LUNAS";
                                 } elseif ($stts == 2) {
                                     $st = "BELUM LUNAS";
                                 } elseif ($stts == 3) {
                                     $st = "TAK BAYAR";
                                 } ?>
-                                <p class="label label-primary"> STATUS : <?= $st; ?> </p>
-                                <p class="label label-warning"> BULAN : <?= $bl; ?></p>
-                                <p class="label label-danger"> TAHUN : <?= $tahun; ?></p>
-                            </h3>
-                            <a href="<?= 'pages/rekap/excel_kos.php?dari=' . $dari . '&sampai=' . $sampai ?>" target="_blank" type="button" class="btn btn-success pull-right"><span class="fa fa-download">
-                                </span>
-                                Download excel</a>
-                        </div>
-                        <div class="box-header">
-                            <div class="col-xs-5">
-                                <table class="table">
-                                    <tr>
-                                        <th>Jumlah</th>
-                                        <th><?= mysqli_num_rows($data); ?> santri</th>
-                                    </tr>
-                                    <tr>
-                                        <th>Persentase</th>
-                                        <?php
+                            <p class="label label-primary"> STATUS : <?= $st; ?> </p>
+                            <p class="label label-warning"> BULAN : <?= $bl; ?></p>
+                            <p class="label label-danger"> TAHUN : <?= $tahun; ?></p>
+                        </h3>
+                        <a href="<?= 'pages/rekap/excel_kos.php?dari=' . $dari . '&sampai=' . $sampai ?>"
+                            target="_blank" type="button" class="btn btn-success pull-right"><span
+                                class="fa fa-download">
+                            </span>
+                            Download excel</a>
+                    </div>
+                    <div class="box-header">
+                        <div class="col-xs-5">
+                            <table class="table">
+                                <tr>
+                                    <th>Jumlah</th>
+                                    <th><?= mysqli_num_rows($data); ?> santri</th>
+                                </tr>
+                                <tr>
+                                    <th>Persentase</th>
+                                    <?php
                                         $persen = (mysqli_num_rows($data) / $san) * 100;
                                         ?>
-                                        <th><?= round($persen, 2); ?> %</th>
-                                    </tr>
-                                    <tr>
-                                        <th style="width:50%">TOTAL</th>
-                                        <th><?= rupiah(mysqli_num_rows($data) * 300000); ?></th>
-                                    </tr>
-                                </table>
-                            </div>
+                                    <th><?= round($persen, 2); ?> %</th>
+                                </tr>
+                                <tr>
+                                    <th style="width:50%">TOTAL</th>
+                                    <th><?= rupiah(mysqli_num_rows($data) * 300000); ?></th>
+                                </tr>
+                            </table>
                         </div>
-                        <div class="box-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped" id="example1_bst">
-                                    <thead>
-                                        <tr>
-                                            <th>No</th>
-                                            <th>Nama</th>
-                                            <th>Kelas</th>
-                                            <th>Kamar</th>
-                                            <th>Bulan</th>
-                                            <th>Jumlah Bayar</th>
-                                            <th>Kurang</th>
-                                            <th>Ket</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php
+                    </div>
+                    <div class="box-body">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-striped" id="example1_bst">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Nama</th>
+                                        <th>Kelas</th>
+                                        <th>Kamar</th>
+                                        <th>Bulan</th>
+                                        <th>Jumlah Bayar</th>
+                                        <th>Kurang</th>
+                                        <th>Ket</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
                                         $i = 1;
                                         ?>
-                                        <?php foreach ($data as $r) : ?>
-                                            <?php
+                                    <?php foreach ($data as $r) : ?>
+                                    <?php
                                             if ($bulan == 1) {
                                                 $bl = "Januari";
                                             } elseif ($bulan == 2) {
@@ -233,54 +235,55 @@ require 'function.php';
                                                 $bl = "Desember";
                                             }
                                             ?>
-                                            <tr>
-                                                <td><?= $i; ?></td>
-                                                <td><?= $r['nama']; ?></td>
-                                                <td><?= $r['k_formal']; ?> <?= $r['t_formal']; ?></td>
-                                                <td><?= $r['kamar']; ?></td>
-                                                <td><?= $bl; ?> <?= $tahun; ?></td>
+                                    <tr>
+                                        <td><?= $i; ?></td>
+                                        <td><?= $r['nama']; ?></td>
+                                        <td><?= $r['k_formal']; ?> <?= $r['t_formal']; ?></td>
+                                        <td><?= $r['kamar']; ?></td>
+                                        <td><?= $bl; ?> <?= $tahun; ?></td>
 
-                                                <?php if ($stts == 1) : ?>
-                                                    <td><?= rupiah($r['jml']); ?></td>
-                                                    <?php $j = 300000 - $r['jml']; ?>
-                                                    <td><?= rupiah($j); ?></td>
-                                                    <td style="font-weight: bold; color: green;"><span class="fa fa-check"></span> Lunas
-                                                    </td>
-                                                <?php endif ?>
+                                        <?php if ($stts == 1) : ?>
+                                        <td><?= rupiah($r['jml']); ?></td>
+                                        <?php $j = 300000 - $r['jml']; ?>
+                                        <td><?= rupiah($j); ?></td>
+                                        <td style="font-weight: bold; color: green;"><span class="fa fa-check"></span>
+                                            Lunas
+                                        </td>
+                                        <?php endif ?>
 
-                                                <?php if ($stts == 2) : ?>
-                                                    <td style="font-weight: bold; color: orange;"><?= rupiah($r['jml']); ?></td>
-                                                    <?php $j = 300000 - $r['jml']; ?>
-                                                    <td style="font-weight: bold; color: orange;"><?= rupiah($j); ?></td>
-                                                    <td style="font-weight: bold; color: orange;"><span class="fa fa-refresh"> Blm
-                                                            Lunas</span>
-                                                    </td>
-                                                <?php endif ?>
+                                        <?php if ($stts == 2) : ?>
+                                        <td style="font-weight: bold; color: orange;"><?= rupiah($r['jml']); ?></td>
+                                        <?php $j = 300000 - $r['jml']; ?>
+                                        <td style="font-weight: bold; color: orange;"><?= rupiah($j); ?></td>
+                                        <td style="font-weight: bold; color: orange;"><span class="fa fa-refresh"> Blm
+                                                Lunas</span>
+                                        </td>
+                                        <?php endif ?>
 
-                                                <?php if ($stts == 3) : ?>
-                                                    <td style="font-weight: bold; color: red;"> -</td>
-                                                    <td style="font-weight: bold; color: red;"> -</td>
-                                                    <td style="font-weight: bold; color: red;"><span class="fa fa-close"></span> Tak
-                                                        Bayar
-                                                    </td>
-                                                <?php endif ?>
-                                            </tr>
-                                            <?php $i++; ?>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th colspan="4">TOTAL</th>
-                                            <th>TOTAL</th>
-                                            <th>TOTAL</th>
-                                            <th></th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </div><!-- /.box-body -->
-                    </div>
-            </form>
+                                        <?php if ($stts == 3) : ?>
+                                        <td style="font-weight: bold; color: red;"> -</td>
+                                        <td style="font-weight: bold; color: red;"> -</td>
+                                        <td style="font-weight: bold; color: red;"><span class="fa fa-close"></span> Tak
+                                            Bayar
+                                        </td>
+                                        <?php endif ?>
+                                    </tr>
+                                    <?php $i++; ?>
+                                    <?php endforeach; ?>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <th colspan="4">TOTAL</th>
+                                        <th>TOTAL</th>
+                                        <th>TOTAL</th>
+                                        <th></th>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    </div><!-- /.box-body -->
+                </div>
+        </form>
         <?php
         }
         ?>
