@@ -6,8 +6,9 @@ $dbPass = "";
 $dbName = "bendahara";
 $dbHost = "localhost";
 $conn = mysqli_connect("localhost", "root", "", "db_dekos");
+$conn2 = mysqli_connect("localhost", "root", "", "db_santri");
 // $conn = mysqli_connect("localhost", "u9048253_dwk", "PesantrenDWKIT2021", "u9048253_dekos");
-// $conn2 = mysqli_connect("localhost", "u9048253_dwk", "PesantrenDWKIT2021", "u9048253_eman");
+// $conn2 = mysqli_connect("localhost", "u9048253_dwk", "PesantrenDWKIT2021", "u9048253_santri");
 
 $sql_tmp = mysqli_query($conn, "SELECT * FROM tempat");
 $bulan_data = array("", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");

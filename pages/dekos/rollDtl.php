@@ -42,6 +42,7 @@ $tt = array('Dak ada', 'Ny. Jamilah', 'Gus Zaini', 'Ny. Farihah', 'Ny. Zahro', '
                                     <th>NIS</th>
                                     <th>Nama</th>
                                     <th>Kelas</th>
+                                    <th>Asal</th>
                                     <th>Tmp Kos</th>
                                     <th>#</th>
                                 </tr>
@@ -53,12 +54,12 @@ $tt = array('Dak ada', 'Ny. Jamilah', 'Gus Zaini', 'Ny. Farihah', 'Ny. Zahro', '
                                     <td><?= $no++; ?></td>
                                     <td><?= $row['nis'] ?></td>
                                     <td><?= $row['nama'] ?></td>
+                                    <td><?= $tt[$row['asal']] ?></td>
                                     <td><?= $row['k_formal'] . ' - ' . $row['t_formal'] ?></td>
                                     <td><?= $tt[$row['t_kos']] ?></td>
                                     <td>
                                         <form action="" method="post">
                                             <input type="hidden" name="nis" value="<?= $row['nis'] ?>">
-                                            <input type="hidden" name="asal" value="<?= $row['t_kos'] ?>">
                                             <div class="form-group">
                                                 <select name="t_kos" id="" class="form-control form-control-sm"
                                                     required>
@@ -104,13 +105,12 @@ if (isset($_POST['pindah'])) {
     $t_kos = $_POST['t_kos'];
     $nis = $_POST['nis'];
 
-
-    $sql = mysqli_query($conn, "UPDATE kosmen SET t_kos = $t_kos WHERE nis = $nis ");
+    $sql = mysqli_query($conn, "UPDATE kosmen SET t_kos = '$t_kos' WHERE nis = '$nis' ");
     if ($sql) {
         echo "
         <script>
             alert('Data sudah dipindahkan');
-            window.location = 'index.php?link=pages/dekos/rollDtl&id='" . $row['t_kos'] . "';
+            window.location.href = 'index.php?link=pages/dekos/rollDtl&id='" . $t_kos . "';
         </script>
         ";
     }
