@@ -17,8 +17,8 @@ if ($kd === 'dekos') {
 if ($kd === 'ulang') {
 
     mysqli_query($conn, "TRUNCATE tb_santri");
-    $sql = mysqli_query($conn2, "INSERT INTO db_dekos.tb_santri SELECT * FROM db_santri.tb_santri ");
-    // $sql = mysqli_query($conn2, "INSERT INTO u9048253__dekos.tb_santri SELECT * FROM u9048253__santri.tb_santri ");
+    // $sql = mysqli_query($conn2, "INSERT INTO db_dekos.tb_santri SELECT * FROM db_santri.tb_santri ");
+    $sql = mysqli_query($conn2, "INSERT INTO u9048253__dekos.tb_santri SELECT * FROM u9048253__santri.tb_santri ");
     if ($sql) {
         echo "
         <script>
