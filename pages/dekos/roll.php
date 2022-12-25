@@ -40,18 +40,25 @@ $jmlKosn = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM kosmen "));
                             </thead>
                             <tbody>
                                 <?php $no = 1;
-                                foreach ($santri as $row) : ?>
+                                foreach ($santri as $row) : 
+                                    $tks = $row['t_kos'];
+                                $ck = mysqli_query($conn, "SELECT asal, t_kos FROM kosmen WHERE asal = $tks GROUP BY asal ");
+                                $pind = mysqli_fetch_assoc($ck);
+                                ?>
                                 <tr>
                                     <td><?= $no++; ?></td>
                                     <td><?= $tt[$row['t_kos']] ?></td>
                                     <td><?= $row['jml'] ?></td>
                                     <td>
+                                        <?php if(mysqli_num_rows($ck) > 0) { 
+                                            echo " <div class='text-danger'>Data ini sudah dipindah ke <b>".$tt[$pind['t_kos']]. "</b>. Silahkan hapus dulu data dibawah jika ada perubahan</div>";
+                                        }else{?>
                                         <form action="" method="post">
                                             <input type="hidden" name="asal" value="<?= $row['t_kos'] ?>">
                                             <div class="form-group">
                                                 <select name="t_kos" id="" class="form-control form-control-sm"
                                                     required>
-                                                    <option value=""> -pilih tempat kos- </option>
+                                                    <option value=""> -pilih tempat kos- </option>36
                                                     <?php for ($i = 0; $i < count($tt); $i++) { ?>
                                                     <option value="<?= $i; ?>"><?= $tt[$i]; ?></option>
                                                     <?php }; ?>
@@ -61,6 +68,7 @@ $jmlKosn = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM kosmen "));
                                                     class="fa fa-refresh"></i> Pindah
                                                 Tempat</button>
                                         </form>
+                                        <?php } ?>
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
@@ -170,7 +178,7 @@ if (isset($_POST['pindah'])) {
         </script>
         ";
     } else {
-        $sql = mysqli_query($conn, "INSERT INTO kosmen (nis, t_kos, bulan, tahun) SELECT nis, $t_kos, $bulan, $tahun FROM tb_santri WHERE t_kos = $asal AND ket = 0 AND aktif = 'Y' ");
+        $sql = mysqli_query($conn, "INSERT INTO kosmen (nis, asal, t_kos, bulan, tahun) SELECT nis, $asal, $t_kos, $bulan, $tahun FROM tb_santri WHERE t_kos = $asal AND ket = 0 AND aktif = 'Y' ");
         if ($sql) {
             echo "
         <script>
