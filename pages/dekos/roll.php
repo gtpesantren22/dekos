@@ -80,14 +80,18 @@ $jmlKosn = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM kosmen "));
         <div class="col-xs-12">
             <div class="box">
                 <div class="box-header">
+
                     <h3 class="box-title">Hasil Rolling Sementara Data Dekosan</h3>
-                    <form action="" method="post">
-                        <button type="submit" name="dekos" class="btn btn-primary btn-sm pull-right">Simpan ke Data
-                            Santri
-                            (Dekosan)</button>
-                        <button type="submit" name="ddpontren" class="btn btn-warning btn-sm pull-right">Simpan ke Data
-                            Santri (D'Pontren)</button>
-                    </form>
+                    <a href="index.php?link=pages/dekos/rollSet&kd=dekos"
+                        onchange="return confirm('Yakin akan disinkron ?. Pastikan data sudah valid terlebih dahulu !')"
+                        class="btn btn-primary btn-sm pull-right">Simpan ke Data
+                        Santri
+                        (Dekosan)</a>
+                    <a href="index.php?link=pages/dekos/rollSet&kd=dpontren"
+                        onchange="return confirm('Yakin akan disinkron ?. Pastikan data sudah valid terlebih dahulu !')"
+                        class="btn btn-warning btn-sm pull-right">Simpan ke Data
+                        Santri (D'Pontren)</a>
+
                     <div class="box-body">
                         <div class="table-responsive">
                             <table id="example2" class="table table-bordered table-striped">
