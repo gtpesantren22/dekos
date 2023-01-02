@@ -5,7 +5,7 @@ $smnt =  query("SELECT a.t_kos, COUNT(a.t_kos) AS jml FROM kosmen a JOIN tb_sant
 $tt = array('Dak ada', 'Ny. Jamilah', 'Gus Zaini', 'Ny. Farihah', 'Ny. Zahro', 'Ny. Saadah', 'Ny. Mamjudah', 'Ny. Naili', 'Ny. Lathifah', 'Ny. Umi Kultsum');
 
 $jmlSntri = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM tb_santri WHERE ket = 0 AND aktif = 'Y' "));
-$jmlKosn = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM kosmen "));
+$jmlKosn = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM kosmen a JOIN tb_santri b ON a.nis=b.nis WHERE b.aktif = 'Y' AND b.ket = 0 "));
 ?>
 <section class="content-header">
     <h1>
