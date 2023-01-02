@@ -13,6 +13,13 @@ $setor = mysqli_query($conn, "SELECT a.t_kos, a.bulan, a.tahun, b.nama, COUNT(*)
 
 $bl = array("-", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");
 $tt = array('Dak ada', 'Ny. Jamilah', 'Gus Zaini', 'Ny. Farihah', 'Ny. Zahro', 'Ny. Saadah', 'Ny. Mamjudah', 'Ny. Naili', 'Ny. Lathifah');
+$total = mysqli_fetch_assoc(mysqli_query($conn, "SELECT a.t_kos, a.bulan, a.tahun, b.nama, COUNT(*) as total, 
+                                    COUNT(CASE WHEN a.ket = 0 THEN 1 END) bayar,
+                                    COUNT(CASE WHEN a.ket = 1 THEN 1 END) ustd,
+                                    COUNT(CASE WHEN a.ket = 2 THEN 1 END) khaddam,
+                                    COUNT(CASE WHEN a.ket = 3 THEN 1 END) gratis,
+                                    COUNT(CASE WHEN a.ket = 4 THEN 1 END) mhs 
+                                    FROM kunci a JOIN tempat b ON a.t_kos=b.kd_tmp WHERE a.bulan = $bln AND a.tahun = '$thn'"));
 ?>
 <section class="content-header">
     <h1><span class="fa fa-cutlery"> </span>
@@ -55,19 +62,33 @@ $tt = array('Dak ada', 'Ny. Jamilah', 'Gus Zaini', 'Ny. Farihah', 'Ny. Zahro', '
                                 while ($r = mysqli_fetch_assoc($setor)) {
                                     $tks = $r['t_kos'];
                                 ?>
-                                    <tr>
-                                        <td><?= $i++ ?></td>
-                                        <td><?= $r['nama'] ?></td>
-                                        <td><?= $r['bayar'] ?></td>
-                                        <td><?= $r['ustd'] ?></td>
-                                        <td><?= $r['gratis'] ?></td>
-                                        <td><?= $r['khaddam'] ?></td>
-                                        <td><?= $r['total'] ?></td>
-                                        <td><a href="<?= 'index.php?link=pages/kunci/detail2&bln=' . $r["bulan"] . '&thn=' . $r['tahun'] . '&tks=' . $r['t_kos']; ?>"><button class="btn btn-success btn-xs"><i class="fa fa-users"></i> Lihat Santri</button></a>
-                                        </td>
-                                    </tr>
+                                <tr>
+                                    <td><?= $i++ ?></td>
+                                    <td><?= $r['nama'] ?></td>
+                                    <td><?= $r['bayar'] ?></td>
+                                    <td><?= $r['ustd'] ?></td>
+                                    <td><?= $r['gratis'] ?></td>
+                                    <td><?= $r['khaddam'] ?></td>
+                                    <td><?= $r['total'] ?></td>
+                                    <td><a
+                                            href="<?= 'index.php?link=pages/kunci/detail2&bln=' . $r["bulan"] . '&thn=' . $r['tahun'] . '&tks=' . $r['t_kos']; ?>"><button
+                                                class="btn btn-success btn-xs"><i class="fa fa-users"></i> Lihat
+                                                Santri</button></a>
+                                    </td>
+                                </tr>
                                 <?php } ?>
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th colspan="2">TOTAL</th>
+                                    <th><?= $total['bayar']; ?></th>
+                                    <th><?= $total['ustd'] ?></th>
+                                    <th><?= $total['gratis'] ?></th>
+                                    <th><?= $total['khaddam'] ?></th>
+                                    <th><?= $total['total'] ?></th>
+                                    <th></th>
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div><!-- /.box-body -->
@@ -76,15 +97,15 @@ $tt = array('Dak ada', 'Ny. Jamilah', 'Gus Zaini', 'Ny. Farihah', 'Ny. Zahro', '
     </div><!-- /.row -->
 </section><!-- /.content -->
 <script>
-    $(function() {
-        $("#example1").DataTable();
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false
-        });
+$(function() {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+        "paging": true,
+        "lengthChange": false,
+        "searching": false,
+        "ordering": true,
+        "info": true,
+        "autoWidth": false
     });
+});
 </script>
