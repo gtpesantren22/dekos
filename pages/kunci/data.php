@@ -45,7 +45,7 @@ $bln = array("-", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "July"
                                     <th>No</th>
                                     <th>Bulan</th>
                                     <?php foreach ($sql_tmp as $sq) : ?>
-                                    <th><?= $sq['nama']; ?></th>
+                                        <th><?= $sq['nama']; ?></th>
                                     <?php endforeach; ?>
                                     <th>Total</th>
                                     <th>#</th>
@@ -53,27 +53,25 @@ $bln = array("-", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "July"
                             </thead>
                             <tbody>
                                 <?php $i = 1;
-                                $str = mysqli_query($conn, "SELECT *, COUNT(*) AS total FROM kunci GROUP BY bulan");
+                                $str = mysqli_query($conn, "SELECT *, COUNT(*) AS total FROM kunci WHERE tahun = '2022/2023' GROUP BY bulan");
                                 foreach ($str as $r) :
                                     $bull = $r['bulan'];
                                     $thh = $r['tahun'];
                                 ?>
-                                <tr>
-                                    <td><?= $i; ?></td>
-                                    <td><?= $bln[$r["bulan"]] . ' ' . $r["tahun"]; ?> </td>
-                                    <?php foreach ($sql_tmp as $sq) :
+                                    <tr>
+                                        <td><?= $i; ?></td>
+                                        <td><?= $bln[$r["bulan"]] . ' ' . $r["tahun"]; ?> </td>
+                                        <?php foreach ($sql_tmp as $sq) :
                                             $ttks = $sq['kd_tmp'];
                                             $tlt = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM kunci WHERE bulan = $bull AND tahun = '$thh' AND t_kos = '$ttks' "));
                                         ?>
-                                    <td><?= $tlt; ?></td>
-                                    <?php endforeach; ?>
-                                    <td><?= $r['total'] ?></td>
-                                    <td><a
-                                            href="<?= 'index.php?link=pages/kunci/detail&bln=' . $r["bulan"] . '&thn=' . $r['tahun']; ?>"><button
-                                                type="submit" name="edit" class="btn btn-info btn-xs">Lihat</button></a>
-                                    </td>
-                                </tr>
-                                <?php $i++; ?>
+                                            <td><?= $tlt; ?></td>
+                                        <?php endforeach; ?>
+                                        <td><?= $r['total'] ?></td>
+                                        <td><a href="<?= 'index.php?link=pages/kunci/detail&bln=' . $r["bulan"] . '&thn=' . $r['tahun']; ?>"><button type="submit" name="edit" class="btn btn-info btn-xs">Lihat</button></a>
+                                        </td>
+                                    </tr>
+                                    <?php $i++; ?>
                                 <?php endforeach; ?>
                             </tbody>
                         </table>
@@ -84,15 +82,15 @@ $bln = array("-", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "July"
     </div><!-- /.row -->
 </section><!-- /.content -->
 <script>
-$(function() {
-    $("#example1").DataTable();
-    $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false
+    $(function() {
+        $("#example1").DataTable();
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false
+        });
     });
-});
 </script>
