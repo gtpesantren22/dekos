@@ -45,36 +45,36 @@ $SMP4 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `tb_santri` WHERE ket
 // --- MA ---
 $MA1 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `tb_santri` WHERE ket = 'baru' AND lembaga = 'MA' AND jkl = 'Laki-laki' AND stts = 'Terverifikasi' "));
 
-$MA2 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `tb_santri` WHERE ket = 'baru' AND lembaga = 'MA' AND jkl = 'Laki-laki' AND stts = 'Belum Terverifikasi' "));
+$MA2 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `tb_santri` WHERE ket = 'baru' AND lembaga = 'MA' AND jkl = 'Laki-laki' AND stts = 'Belum Terverikasi' "));
 
 $MA3 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `tb_santri` WHERE ket = 'baru' AND lembaga = 'MA' AND jkl = 'Perempuan' AND stts = 'Terverifikasi' "));
 
-$MA4 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `tb_santri` WHERE ket = 'baru' AND lembaga = 'MA' AND jkl = 'Perempuan' AND stts = 'Belum Terverifikasi' "));
+$MA4 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `tb_santri` WHERE ket = 'baru' AND lembaga = 'MA' AND jkl = 'Perempuan' AND stts = 'Belum Terverikasi' "));
 
 $MA5 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `tb_santri` WHERE ket = 'lama' AND lembaga = 'MA' AND jkl = 'Laki-laki' AND stts = 'Terverifikasi' "));
 
-$MA6 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `tb_santri` WHERE ket = 'lama' AND lembaga = 'MA' AND jkl = 'Laki-laki' AND stts = 'Belum Terverifikasi' "));
+$MA6 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `tb_santri` WHERE ket = 'lama' AND lembaga = 'MA' AND jkl = 'Laki-laki' AND stts = 'Belum Terverikasi' "));
 
 $MA7 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `tb_santri` WHERE ket = 'lama' AND lembaga = 'MA' AND jkl = 'Perempuan' AND stts = 'Terverifikasi' "));
 
-$MA8 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `tb_santri` WHERE ket = 'lama' AND lembaga = 'MA' AND jkl = 'Perempuan' AND stts = 'Belum Terverifikasi' "));
+$MA8 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `tb_santri` WHERE ket = 'lama' AND lembaga = 'MA' AND jkl = 'Perempuan' AND stts = 'Belum Terverikasi' "));
 
 // --- SMK ---
 $SMK1 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `tb_santri` WHERE ket = 'baru' AND lembaga = 'SMK' AND jkl = 'Laki-laki' AND stts = 'Terverifikasi' "));
 
-$SMK2 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `tb_santri` WHERE ket = 'baru' AND lembaga = 'SMK' AND jkl = 'Laki-laki' AND stts = 'Belum Terverifikasi' "));
+$SMK2 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `tb_santri` WHERE ket = 'baru' AND lembaga = 'SMK' AND jkl = 'Laki-laki' AND stts = 'Belum Terverikasi' "));
 
 $SMK3 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `tb_santri` WHERE ket = 'baru' AND lembaga = 'SMK' AND jkl = 'Perempuan' AND stts = 'Terverifikasi' "));
 
-$SMK4 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `tb_santri` WHERE ket = 'baru' AND lembaga = 'SMK' AND jkl = 'Perempuan' AND stts = 'Belum Terverifikasi' "));
+$SMK4 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `tb_santri` WHERE ket = 'baru' AND lembaga = 'SMK' AND jkl = 'Perempuan' AND stts = 'Belum Terverikasi' "));
 
 $SMK5 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `tb_santri` WHERE ket = 'lama' AND lembaga = 'SMK' AND jkl = 'Laki-laki' AND stts = 'Terverifikasi' "));
 
-$SMK6 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `tb_santri` WHERE ket = 'lama' AND lembaga = 'SMK' AND jkl = 'Laki-laki' AND stts = 'Belum Terverifikasi' "));
+$SMK6 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `tb_santri` WHERE ket = 'lama' AND lembaga = 'SMK' AND jkl = 'Laki-laki' AND stts = 'Belum Terverikasi' "));
 
 $SMK7 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `tb_santri` WHERE ket = 'lama' AND lembaga = 'SMK' AND jkl = 'Perempuan' AND stts = 'Terverifikasi' "));
 
-$SMK8 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `tb_santri` WHERE ket = 'lama' AND lembaga = 'SMK' AND jkl = 'Perempuan' AND stts = 'Belum Terverifikasi' "));
+$SMK8 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `tb_santri` WHERE ket = 'lama' AND lembaga = 'SMK' AND jkl = 'Perempuan' AND stts = 'Belum Terverikasi' "));
 
 ?>
 
