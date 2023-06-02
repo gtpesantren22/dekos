@@ -1,7 +1,7 @@
 <?php
 
 $conn = mysqli_connect("localhost", "u9048253_dwk", "PesantrenDWKIT2021", "u9048253_psb23");
-$data = mysqli_query($conn, "SELECT * FROM tb_santri WHERE ket = 'baru' AND gel = 3 ORDER BY nama ASC ");
+$data = mysqli_query($conn, "SELECT * FROM tb_santri WHERE ket = 'baru' AND gel = 3 AND lembaga != 'MI' AND lembaga != 'RA' ORDER BY nama ASC ");
 ?>
 
 <!DOCTYPE html>
@@ -24,6 +24,7 @@ $data = mysqli_query($conn, "SELECT * FROM tb_santri WHERE ket = 'baru' AND gel 
                 <th>ALAMAT</th>
                 <th>JKL</th>
                 <th>LEMBAGA</th>
+                <th>GEL</th>
             </tr>
         </thead>
         <tbody>
@@ -37,6 +38,7 @@ $data = mysqli_query($conn, "SELECT * FROM tb_santri WHERE ket = 'baru' AND gel 
                     <td><?= $d['desa'] . '-' . $d['kec'] . '-' . $d['kab'] ?></td>
                     <td><?= $d['jkl'] ?></td>
                     <td><?= $d['lembaga'] ?></td>
+                    <td><?= $d['gel'] ?></td>
                 </tr>
             <?php endwhile; ?>
         </tbody>
