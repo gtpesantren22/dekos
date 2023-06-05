@@ -1,6 +1,7 @@
 <?php
 
-$conn = mysqli_connect("localhost", "u9048253_dwk", "PesantrenDWKIT2021", "u9048253_psb23");
+// $conn = mysqli_connect("localhost", "u9048253_dwk", "PesantrenDWKIT2021", "u9048253_psb23");
+$conn = mysqli_connect("localhost", "root", "", "psb23");
 
 // --- RA ---
 $RA1 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `tb_santri` WHERE ket = 'baru' AND lembaga = 'RA' AND jkl = 'Laki-laki' AND stts = 'Terverifikasi' "));
@@ -88,8 +89,23 @@ $SMK8 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `tb_santri` WHERE ket
     <title>Document</title>
 </head>
 
+<style>
+    .table1 {
+        font-family: sans-serif;
+        color: #232323;
+        border-collapse: collapse;
+    }
+
+    .table1,
+    th,
+    td {
+        border: 1px solid #999;
+        padding: 8px 20px;
+    }
+</style>
+
 <body>
-    <b>
+    <!-- <b>
         <?php
 
         echo  $RA1 . '<br>';
@@ -127,7 +143,69 @@ $SMK8 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `tb_santri` WHERE ket
 
 
         ?>
-    </b>
+    </b> -->
+    <table class="table1">
+        <tr>
+            <td><?= $RA1 ?></td>
+            <td><?= $RA2 ?></td>
+            <td><?= $RA3 ?></td>
+            <td><?= $RA4 ?></td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td><?= $MI1 ?></td>
+            <td><?= $MI2 ?></td>
+            <td><?= $MI3 ?></td>
+            <td><?= $MI4 ?></td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td><?= $MTs1 ?></td>
+            <td><?= $MTs2 ?></td>
+            <td><?= $MTs3 ?></td>
+            <td><?= $MTs4 ?></td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td><?= $SMP1 ?></td>
+            <td><?= $SMP2 ?></td>
+            <td><?= $SMP3 ?></td>
+            <td><?= $SMP4 ?></td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+        </tr>
+        <tr>
+            <td><?= $MA1 ?></td>
+            <td><?= $MA2 ?></td>
+            <td><?= $MA3 ?></td>
+            <td><?= $MA4 ?></td>
+            <td><?= $MA5 ?></td>
+            <td><?= $MA6 ?></td>
+            <td><?= $MA7 ?></td>
+            <td><?= $MA8 ?></td>
+        </tr>
+        <tr>
+            <td><?= $SMK1 ?></td>
+            <td><?= $SMK2 ?></td>
+            <td><?= $SMK3 ?></td>
+            <td><?= $SMK4 ?></td>
+            <td><?= $SMK5 ?></td>
+            <td><?= $SMK6 ?></td>
+            <td><?= $SMK7 ?></td>
+            <td><?= $SMK8 ?></td>
+        </tr>
+    </table>
 </body>
 
 </html>
