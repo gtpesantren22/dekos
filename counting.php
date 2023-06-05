@@ -1,7 +1,7 @@
 <?php
 
-// $conn = mysqli_connect("localhost", "u9048253_dwk", "PesantrenDWKIT2021", "u9048253_psb23");
-$conn = mysqli_connect("localhost", "root", "", "psb23");
+$conn = mysqli_connect("localhost", "u9048253_dwk", "PesantrenDWKIT2021", "u9048253_psb23");
+// $conn = mysqli_connect("localhost", "root", "", "psb23");
 
 // --- RA ---
 $RA1 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM `tb_santri` WHERE ket = 'baru' AND lembaga = 'RA' AND jkl = 'Laki-laki' AND stts = 'Terverifikasi' "));
