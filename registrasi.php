@@ -16,7 +16,7 @@ $data = mysqli_query($conn, "SELECT * FROM tb_santri WHERE ket = 'baru' ");
 
 <body>
     <h1>Data Registrasi Santri Baru</h1>
-    <table>
+    <table border="1">
         <thead>
             <tr>
                 <th>No</th>
