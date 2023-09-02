@@ -47,7 +47,7 @@ $data = mysqli_query($conn, "SELECT * FROM tb_santri WHERE ket = 'baru' ORDER BY
                     <td><?= $d['desa'] . '-' . $d['kec'] . '-' . $d['kab'] ?></td>
                     <td><?= $d['lembaga'] ?></td>
                     <td><?= $d['gel'] ?></td>
-                    <td><?= number_format($lunas['jml']) ?></td>
+                    <td><?= ($lunas['jml']) ?></td>
                 </tr>
             <?php endwhile; ?>
         </tbody>

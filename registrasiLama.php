@@ -53,9 +53,9 @@ $data = mysqli_query($conn, "SELECT * FROM tb_santri WHERE ket = 'lama' ORDER BY
                     <td><?= $d['nama'] ?></td>
                     <td><?= $d['desa'] . '-' . $d['kec'] . '-' . $d['kab'] ?></td>
                     <td><?= $d['lembaga'] ?></td>
-                    <td><?= number_format($tangg) ?></td>
-                    <td><?= number_format($lunas['jml']) ?></td>
-                    <td><?= number_format($tangg - $lunas['jml']) ?></td>
+                    <td><?= ($tangg) ?></td>
+                    <td><?= ($lunas['jml']) ?></td>
+                    <td><?= ($tangg - $lunas['jml']) ?></td>
                 </tr>
             <?php endwhile; ?>
         </tbody>
