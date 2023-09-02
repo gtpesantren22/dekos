@@ -32,7 +32,7 @@ $data = mysqli_query($conn, "SELECT * FROM tb_santri WHERE ket = 'lama' ");
         <tbody>
             <?php
             $no = 1;
-            while ($d = mysqli_fetch_array($data)) :
+            while ($d = mysqli_fetch_assoc($data)) :
                 $nis = $data['nis'];
                 $tgn = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM tangg WHERE nis = $nis "));
                 $tangg = $tgn['infaq'] + $tgn['buku'] + $tgn['kartu'] + $tgn['kalender'] + $tgn['seragam_pes'] + $tgn['seragam_lem'] + $tgn['orsaba'];
