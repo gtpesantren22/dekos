@@ -1,7 +1,7 @@
 <?php
 
 $conn = mysqli_connect("localhost", "u9048253_dwk", "PesantrenDWKIT2021", "u9048253_psb23");
-$data = mysqli_query($conn, "SELECT * FROM tb_santri WHERE ket = 'baru' ");
+$data = mysqli_query($conn, "SELECT * FROM tb_santri WHERE ket = 'baru' ORDER BY nama ASC");
 ?>
 
 <!DOCTYPE html>
@@ -26,17 +26,27 @@ $data = mysqli_query($conn, "SELECT * FROM tb_santri WHERE ket = 'baru' ");
                 <th>Tanggungan</th>
                 <th>Lunas</th>
                 <th>Sisa</th>
-                <th>#</th>
             </tr>
         </thead>
         <tbody>
             <?php
             $no = 1;
             while ($d = mysqli_fetch_assoc($data)) :
-                $nis = $data['nis'];
-                $tgn = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM tangg WHERE nis = $nis "));
-                $tangg = $tgn['infaq'] + $tgn['buku'] + $tgn['kartu'] + $tgn['kalender'] + $tgn['seragam_pes'] + $tgn['seragam_lem'] + $tgn['orsaba'];
+                $nis = $d['nis'];
+                $tgn = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM tanggungan WHERE nis = $nis "));
+
+                if ($tgn) {
+                    $tangg = $tgn['infaq'] + $tgn['buku'] + $tgn['kartu'] + $tgn['kalender'] + $tgn['seragam_pes'] + $tgn['seragam_lem'] + $tgn['orsaba'];
+                } else {
+                    $tangg = 0;
+                }
+
                 $lunas = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(nominal) AS jml FROM regist WHERE nis = $nis "));
+                if ($lunas) {
+                    $lunas = $lunas;
+                } else {
+                    $lunas = 0;
+                }
             ?>
                 <tr>
                     <td><?= $no++ ?></td>

@@ -1,7 +1,8 @@
 <?php
 
 $conn = mysqli_connect("localhost", "u9048253_dwk", "PesantrenDWKIT2021", "u9048253_psb23");
-$data = mysqli_query($conn, "SELECT * FROM tb_santri WHERE ket = 'lama' ORDER BY nama ASC");
+// $conn = mysqli_connect("localhost", "root", "", "psb23");
+$data = mysqli_query($conn, "SELECT * FROM tb_santri WHERE ket = 'baru' ORDER BY nama ASC");
 ?>
 
 <!DOCTYPE html>
@@ -11,11 +12,11 @@ $data = mysqli_query($conn, "SELECT * FROM tb_santri WHERE ket = 'lama' ORDER BY
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Registrasi</title>
+    <title>Data Pendaftaran</title>
 </head>
 
 <body>
-    <h1>Data Registrasi Santri Lanjutan</h1>
+    <h1>Data Pendafataran Santri Lama</h1>
     <table border="1">
         <thead>
             <tr>
@@ -23,9 +24,8 @@ $data = mysqli_query($conn, "SELECT * FROM tb_santri WHERE ket = 'lama' ORDER BY
                 <th>Nama</th>
                 <th>Alamat</th>
                 <th>Lembaga</th>
-                <th>Tanggungan</th>
-                <th>Lunas</th>
-                <th>Sisa</th>
+                <th>Gel</th>
+                <th>Pembayaran</th>
             </tr>
         </thead>
         <tbody>
@@ -33,15 +33,8 @@ $data = mysqli_query($conn, "SELECT * FROM tb_santri WHERE ket = 'lama' ORDER BY
             $no = 1;
             while ($d = mysqli_fetch_assoc($data)) :
                 $nis = $d['nis'];
-                $tgn = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM tanggungan WHERE nis = $nis "));
 
-                if ($tgn) {
-                    $tangg = $tgn['infaq'] + $tgn['buku'] + $tgn['kartu'] + $tgn['kalender'] + $tgn['seragam_pes'] + $tgn['seragam_lem'] + $tgn['orsaba'];
-                } else {
-                    $tangg = 0;
-                }
-
-                $lunas = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(nominal) AS jml FROM regist WHERE nis = $nis "));
+                $lunas = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(nominal) AS jml FROM bp_daftar WHERE nis = $nis "));
                 if ($lunas) {
                     $lunas = $lunas;
                 } else {
@@ -53,9 +46,8 @@ $data = mysqli_query($conn, "SELECT * FROM tb_santri WHERE ket = 'lama' ORDER BY
                     <td><?= $d['nama'] ?></td>
                     <td><?= $d['desa'] . '-' . $d['kec'] . '-' . $d['kab'] ?></td>
                     <td><?= $d['lembaga'] ?></td>
-                    <td><?= number_format($tangg) ?></td>
+                    <td><?= $d['gel'] ?></td>
                     <td><?= number_format($lunas['jml']) ?></td>
-                    <td><?= number_format($tangg - $lunas['jml']) ?></td>
                 </tr>
             <?php endwhile; ?>
         </tbody>
