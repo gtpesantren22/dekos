@@ -2,7 +2,7 @@
 
 $conn = mysqli_connect("localhost", "u9048253_dwk", "PesantrenDWKIT2021", "u9048253_psb23");
 // $conn = mysqli_connect("localhost", "root", "", "psb23");
-$data = mysqli_query($conn, "SELECT * FROM tb_santri WHERE ket = 'baru' ORDER BY nama ASC");
+$data = mysqli_query($conn, "SELECT * FROM tb_santri WHERE ket = 'lama' ORDER BY nama ASC");
 ?>
 
 <!DOCTYPE html>
