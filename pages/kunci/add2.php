@@ -43,6 +43,7 @@ $kt = array('Bayar', 'Ust/Ustdz', 'Khaddam', 'Gratis', 'Berhenti');
                                         <th>NIS</th>
                                         <th>Nama</th>
                                         <th>Alamat</th>
+                                        <th>Kelas</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -56,6 +57,7 @@ $kt = array('Bayar', 'Ust/Ustdz', 'Khaddam', 'Gratis', 'Berhenti');
                                             <td><?= $r['nis'] ?></td>
                                             <td><?= $r['nama'] ?></td>
                                             <td><?= $r['desa'] . '-' . $r['kec'] . '-' . $r['kab'] ?></td>
+                                            <td><?= $r['k_formal'] . '-' . $r['r_formal'] . '-' . $r['jurusan'] . '-' . $r['t_formal'] ?></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>
