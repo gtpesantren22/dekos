@@ -13,6 +13,12 @@ $conn2 = mysqli_connect("localhost", "root", "", "db_santri");
 $sql_tmp = mysqli_query($conn, "SELECT * FROM tempat");
 $bulan_data = array("", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");
 
+function bulan($bulan)
+{
+    $bulan_data = array("", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");
+    $retur = $bulan != '' ? $bulan_data[$bulan] : 'Bulan Salah';
+    return $retur;
+}
 
 function query($query)
 {
