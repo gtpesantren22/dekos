@@ -39,18 +39,18 @@ $tmpKos = array("-", "Ny. Jamilah", "Gus Zaini", "Ny. Farihah", "Ny. Zahro", "Ny
                 <tr>
                     <th>No</th>
                     <th>Tempat</th>
-                    <th>Jan</th>
-                    <th>Feb</th>
-                    <th>Mar</th>
-                    <th>Aprl</th>
-                    <th>Mei</th>
-                    <th>Jun</th>
                     <th>Jul</th>
                     <th>Agust</th>
                     <th>Sept</th>
                     <th>Oct</th>
                     <th>Nov</th>
                     <th>Des</th>
+                    <th>Jan</th>
+                    <th>Feb</th>
+                    <th>Mar</th>
+                    <th>Aprl</th>
+                    <th>Mei</th>
+                    <th>Jun</th>
                 </tr>
             </thead>
             <tbody>
@@ -63,72 +63,6 @@ $tmpKos = array("-", "Ny. Jamilah", "Gus Zaini", "Ny. Farihah", "Ny. Zahro", "Ny
                     <tr>
                         <td><?= $no++ ?></td>
                         <td><?= $tmpKos[$nmTkos] ?></td>
-                        <td>
-                            <?php
-                            $totalJumlah = 0;
-                            $sql = mysqli_query($conn, "SELECT k_formal, COUNT(nama) AS jml FROM kunci WHERE tahun = '$thn' AND t_kos = '$nmTkos' AND (k_formal = 'IX' OR k_formal = 'XII' OR k_formal = 9 OR k_formal = 3 OR k_formal = 12) AND bulan = 1 GROUP BY k_formal ");
-                            while ($hsl = mysqli_fetch_assoc($sql)) {
-                                echo $hsl['k_formal'] . " = " . $hsl['jml'] . "</br>";
-                                $totalJumlah += $hsl['jml'];
-                            }
-                            echo "<b>Total : " . $totalJumlah . "</b>";
-                            ?>
-                        </td>
-                        <td>
-                            <?php
-                            $totalJumlah = 0;
-                            $sql = mysqli_query($conn, "SELECT k_formal, COUNT(nama) AS jml FROM kunci WHERE tahun = '$thn' AND t_kos = '$nmTkos' AND (k_formal = 'IX' OR k_formal = 'XII' OR k_formal = 9 OR k_formal = 3 OR k_formal = 12) AND bulan = 2 GROUP BY k_formal ");
-                            while ($hsl = mysqli_fetch_assoc($sql)) {
-                                echo $hsl['k_formal'] . " = " . $hsl['jml'] . "</br>";
-                                $totalJumlah += $hsl['jml'];
-                            }
-                            echo "<b>Total : " . $totalJumlah . "</b>";
-                            ?>
-                        </td>
-                        <td>
-                            <?php
-                            $totalJumlah = 0;
-                            $sql = mysqli_query($conn, "SELECT k_formal, COUNT(nama) AS jml FROM kunci WHERE tahun = '$thn' AND t_kos = '$nmTkos' AND (k_formal = 'IX' OR k_formal = 'XII' OR k_formal = 9 OR k_formal = 3 OR k_formal = 12) AND bulan = 3 GROUP BY k_formal ");
-                            while ($hsl = mysqli_fetch_assoc($sql)) {
-                                echo $hsl['k_formal'] . " = " . $hsl['jml'] . "</br>";
-                                $totalJumlah += $hsl['jml'];
-                            }
-                            echo "<b>Total : " . $totalJumlah . "</b>";
-                            ?>
-                        </td>
-                        <td>
-                            <?php
-                            $totalJumlah = 0;
-                            $sql = mysqli_query($conn, "SELECT k_formal, COUNT(nama) AS jml FROM kunci WHERE tahun = '$thn' AND t_kos = '$nmTkos' AND (k_formal = 'IX' OR k_formal = 'XII' OR k_formal = 9 OR k_formal = 3 OR k_formal = 12) AND bulan = 4 GROUP BY k_formal ");
-                            while ($hsl = mysqli_fetch_assoc($sql)) {
-                                echo $hsl['k_formal'] . " = " . $hsl['jml'] . "</br>";
-                                $totalJumlah += $hsl['jml'];
-                            }
-                            echo "<b>Total : " . $totalJumlah . "</b>";
-                            ?>
-                        </td>
-                        <td>
-                            <?php
-                            $totalJumlah = 0;
-                            $sql = mysqli_query($conn, "SELECT k_formal, COUNT(nama) AS jml FROM kunci WHERE tahun = '$thn' AND t_kos = '$nmTkos' AND (k_formal = 'IX' OR k_formal = 'XII' OR k_formal = 9 OR k_formal = 3 OR k_formal = 12) AND bulan = 5 GROUP BY k_formal ");
-                            while ($hsl = mysqli_fetch_assoc($sql)) {
-                                echo $hsl['k_formal'] . " = " . $hsl['jml'] . "</br>";
-                                $totalJumlah += $hsl['jml'];
-                            }
-                            echo "<b>Total : " . $totalJumlah . "</b>";
-                            ?>
-                        </td>
-                        <td>
-                            <?php
-                            $totalJumlah = 0;
-                            $sql = mysqli_query($conn, "SELECT k_formal, COUNT(nama) AS jml FROM kunci WHERE tahun = '$thn' AND t_kos = '$nmTkos' AND (k_formal = 'IX' OR k_formal = 'XII' OR k_formal = 9 OR k_formal = 3 OR k_formal = 12) AND bulan = 6 GROUP BY k_formal ");
-                            while ($hsl = mysqli_fetch_assoc($sql)) {
-                                echo $hsl['k_formal'] . " = " . $hsl['jml'] . "</br>";
-                                $totalJumlah += $hsl['jml'];
-                            }
-                            echo "<b>Total : " . $totalJumlah . "</b>";
-                            ?>
-                        </td>
                         <td>
                             <?php
                             $totalJumlah = 0;
@@ -188,6 +122,72 @@ $tmpKos = array("-", "Ny. Jamilah", "Gus Zaini", "Ny. Farihah", "Ny. Zahro", "Ny
                             <?php
                             $totalJumlah = 0;
                             $sql = mysqli_query($conn, "SELECT k_formal, COUNT(nama) AS jml FROM kunci WHERE tahun = '$thn' AND t_kos = '$nmTkos' AND (k_formal = 'IX' OR k_formal = 'XII' OR k_formal = 9 OR k_formal = 3 OR k_formal = 12) AND bulan = 12 GROUP BY k_formal ");
+                            while ($hsl = mysqli_fetch_assoc($sql)) {
+                                echo $hsl['k_formal'] . " = " . $hsl['jml'] . "</br>";
+                                $totalJumlah += $hsl['jml'];
+                            }
+                            echo "<b>Total : " . $totalJumlah . "</b>";
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                            $totalJumlah = 0;
+                            $sql = mysqli_query($conn, "SELECT k_formal, COUNT(nama) AS jml FROM kunci WHERE tahun = '$thn' AND t_kos = '$nmTkos' AND (k_formal = 'IX' OR k_formal = 'XII' OR k_formal = 9 OR k_formal = 3 OR k_formal = 12) AND bulan = 1 GROUP BY k_formal ");
+                            while ($hsl = mysqli_fetch_assoc($sql)) {
+                                echo $hsl['k_formal'] . " = " . $hsl['jml'] . "</br>";
+                                $totalJumlah += $hsl['jml'];
+                            }
+                            echo "<b>Total : " . $totalJumlah . "</b>";
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                            $totalJumlah = 0;
+                            $sql = mysqli_query($conn, "SELECT k_formal, COUNT(nama) AS jml FROM kunci WHERE tahun = '$thn' AND t_kos = '$nmTkos' AND (k_formal = 'IX' OR k_formal = 'XII' OR k_formal = 9 OR k_formal = 3 OR k_formal = 12) AND bulan = 2 GROUP BY k_formal ");
+                            while ($hsl = mysqli_fetch_assoc($sql)) {
+                                echo $hsl['k_formal'] . " = " . $hsl['jml'] . "</br>";
+                                $totalJumlah += $hsl['jml'];
+                            }
+                            echo "<b>Total : " . $totalJumlah . "</b>";
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                            $totalJumlah = 0;
+                            $sql = mysqli_query($conn, "SELECT k_formal, COUNT(nama) AS jml FROM kunci WHERE tahun = '$thn' AND t_kos = '$nmTkos' AND (k_formal = 'IX' OR k_formal = 'XII' OR k_formal = 9 OR k_formal = 3 OR k_formal = 12) AND bulan = 3 GROUP BY k_formal ");
+                            while ($hsl = mysqli_fetch_assoc($sql)) {
+                                echo $hsl['k_formal'] . " = " . $hsl['jml'] . "</br>";
+                                $totalJumlah += $hsl['jml'];
+                            }
+                            echo "<b>Total : " . $totalJumlah . "</b>";
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                            $totalJumlah = 0;
+                            $sql = mysqli_query($conn, "SELECT k_formal, COUNT(nama) AS jml FROM kunci WHERE tahun = '$thn' AND t_kos = '$nmTkos' AND (k_formal = 'IX' OR k_formal = 'XII' OR k_formal = 9 OR k_formal = 3 OR k_formal = 12) AND bulan = 4 GROUP BY k_formal ");
+                            while ($hsl = mysqli_fetch_assoc($sql)) {
+                                echo $hsl['k_formal'] . " = " . $hsl['jml'] . "</br>";
+                                $totalJumlah += $hsl['jml'];
+                            }
+                            echo "<b>Total : " . $totalJumlah . "</b>";
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                            $totalJumlah = 0;
+                            $sql = mysqli_query($conn, "SELECT k_formal, COUNT(nama) AS jml FROM kunci WHERE tahun = '$thn' AND t_kos = '$nmTkos' AND (k_formal = 'IX' OR k_formal = 'XII' OR k_formal = 9 OR k_formal = 3 OR k_formal = 12) AND bulan = 5 GROUP BY k_formal ");
+                            while ($hsl = mysqli_fetch_assoc($sql)) {
+                                echo $hsl['k_formal'] . " = " . $hsl['jml'] . "</br>";
+                                $totalJumlah += $hsl['jml'];
+                            }
+                            echo "<b>Total : " . $totalJumlah . "</b>";
+                            ?>
+                        </td>
+                        <td>
+                            <?php
+                            $totalJumlah = 0;
+                            $sql = mysqli_query($conn, "SELECT k_formal, COUNT(nama) AS jml FROM kunci WHERE tahun = '$thn' AND t_kos = '$nmTkos' AND (k_formal = 'IX' OR k_formal = 'XII' OR k_formal = 9 OR k_formal = 3 OR k_formal = 12) AND bulan = 6 GROUP BY k_formal ");
                             while ($hsl = mysqli_fetch_assoc($sql)) {
                                 echo $hsl['k_formal'] . " = " . $hsl['jml'] . "</br>";
                                 $totalJumlah += $hsl['jml'];
