@@ -52,7 +52,7 @@ $tmpKos = array("-", "Ny. Jamilah", "Gus Zaini", "Ny. Farihah", "Ny. Zahro", "Ny
                             <?php
                             $sql = mysqli_query($conn, "SELECT k_formal, COUNT(nama) AS jml FROM kunci WHERE tahun = '$thn' AND t_kos = '$nmTkos' AND (k_formal = 'IX' OR k_formal = 'XII' OR k_formal = 9 OR k_formal = 3 OR k_formal = 12) AND bulan = 1 GROUP BY k_formal ");
                             while ($hsl = mysqli_fetch_assoc($sql)) {
-                                echo $hsl['k_formal'] . " : " . $hsl['jml'] . "</br>";
+                                echo $hsl['k_formal'] . " = " . $hsl['jml'] . "</br>";
                             }
                             ?>
                         </td>
@@ -60,7 +60,7 @@ $tmpKos = array("-", "Ny. Jamilah", "Gus Zaini", "Ny. Farihah", "Ny. Zahro", "Ny
                             <?php
                             $sql = mysqli_query($conn, "SELECT k_formal, COUNT(nama) AS jml FROM kunci WHERE tahun = '$thn' AND t_kos = '$nmTkos' AND (k_formal = 'IX' OR k_formal = 'XII' OR k_formal = 9 OR k_formal = 3 OR k_formal = 12) AND bulan = 2 GROUP BY k_formal ");
                             while ($hsl = mysqli_fetch_assoc($sql)) {
-                                echo $hsl['k_formal'] . " : " . $hsl['jml'] . "</br>";
+                                echo $hsl['k_formal'] . " = " . $hsl['jml'] . "</br>";
                             }
                             ?>
                         </td>
@@ -68,7 +68,7 @@ $tmpKos = array("-", "Ny. Jamilah", "Gus Zaini", "Ny. Farihah", "Ny. Zahro", "Ny
                             <?php
                             $sql = mysqli_query($conn, "SELECT k_formal, COUNT(nama) AS jml FROM kunci WHERE tahun = '$thn' AND t_kos = '$nmTkos' AND (k_formal = 'IX' OR k_formal = 'XII' OR k_formal = 9 OR k_formal = 3 OR k_formal = 12) AND bulan = 3 GROUP BY k_formal ");
                             while ($hsl = mysqli_fetch_assoc($sql)) {
-                                echo $hsl['k_formal'] . " : " . $hsl['jml'] . "</br>";
+                                echo $hsl['k_formal'] . " = " . $hsl['jml'] . "</br>";
                             }
                             ?>
                         </td>
@@ -76,7 +76,7 @@ $tmpKos = array("-", "Ny. Jamilah", "Gus Zaini", "Ny. Farihah", "Ny. Zahro", "Ny
                             <?php
                             $sql = mysqli_query($conn, "SELECT k_formal, COUNT(nama) AS jml FROM kunci WHERE tahun = '$thn' AND t_kos = '$nmTkos' AND (k_formal = 'IX' OR k_formal = 'XII' OR k_formal = 9 OR k_formal = 3 OR k_formal = 12) AND bulan = 4 GROUP BY k_formal ");
                             while ($hsl = mysqli_fetch_assoc($sql)) {
-                                echo $hsl['k_formal'] . " : " . $hsl['jml'] . "</br>";
+                                echo $hsl['k_formal'] . " = " . $hsl['jml'] . "</br>";
                             }
                             ?>
                         </td>
@@ -84,7 +84,7 @@ $tmpKos = array("-", "Ny. Jamilah", "Gus Zaini", "Ny. Farihah", "Ny. Zahro", "Ny
                             <?php
                             $sql = mysqli_query($conn, "SELECT k_formal, COUNT(nama) AS jml FROM kunci WHERE tahun = '$thn' AND t_kos = '$nmTkos' AND (k_formal = 'IX' OR k_formal = 'XII' OR k_formal = 9 OR k_formal = 3 OR k_formal = 12) AND bulan = 5 GROUP BY k_formal ");
                             while ($hsl = mysqli_fetch_assoc($sql)) {
-                                echo $hsl['k_formal'] . " : " . $hsl['jml'] . "</br>";
+                                echo $hsl['k_formal'] . " = " . $hsl['jml'] . "</br>";
                             }
                             ?>
                         </td>
@@ -92,7 +92,7 @@ $tmpKos = array("-", "Ny. Jamilah", "Gus Zaini", "Ny. Farihah", "Ny. Zahro", "Ny
                             <?php
                             $sql = mysqli_query($conn, "SELECT k_formal, COUNT(nama) AS jml FROM kunci WHERE tahun = '$thn' AND t_kos = '$nmTkos' AND (k_formal = 'IX' OR k_formal = 'XII' OR k_formal = 9 OR k_formal = 3 OR k_formal = 12) AND bulan = 6 GROUP BY k_formal ");
                             while ($hsl = mysqli_fetch_assoc($sql)) {
-                                echo $hsl['k_formal'] . " : " . $hsl['jml'] . "</br>";
+                                echo $hsl['k_formal'] . " = " . $hsl['jml'] . "</br>";
                             }
                             ?>
                         </td>
@@ -100,7 +100,7 @@ $tmpKos = array("-", "Ny. Jamilah", "Gus Zaini", "Ny. Farihah", "Ny. Zahro", "Ny
                             <?php
                             $sql = mysqli_query($conn, "SELECT k_formal, COUNT(nama) AS jml FROM kunci WHERE tahun = '$thn' AND t_kos = '$nmTkos' AND (k_formal = 'IX' OR k_formal = 'XII' OR k_formal = 9 OR k_formal = 3 OR k_formal = 12) AND bulan = 7 GROUP BY k_formal ");
                             while ($hsl = mysqli_fetch_assoc($sql)) {
-                                echo $hsl['k_formal'] . " : " . $hsl['jml'] . "</br>";
+                                echo $hsl['k_formal'] . " = " . $hsl['jml'] . "</br>";
                             }
                             ?>
                         </td>
@@ -108,7 +108,7 @@ $tmpKos = array("-", "Ny. Jamilah", "Gus Zaini", "Ny. Farihah", "Ny. Zahro", "Ny
                             <?php
                             $sql = mysqli_query($conn, "SELECT k_formal, COUNT(nama) AS jml FROM kunci WHERE tahun = '$thn' AND t_kos = '$nmTkos' AND (k_formal = 'IX' OR k_formal = 'XII' OR k_formal = 9 OR k_formal = 3 OR k_formal = 12) AND bulan = 8 GROUP BY k_formal ");
                             while ($hsl = mysqli_fetch_assoc($sql)) {
-                                echo $hsl['k_formal'] . " : " . $hsl['jml'] . "</br>";
+                                echo $hsl['k_formal'] . " = " . $hsl['jml'] . "</br>";
                             }
                             ?>
                         </td>
@@ -116,7 +116,7 @@ $tmpKos = array("-", "Ny. Jamilah", "Gus Zaini", "Ny. Farihah", "Ny. Zahro", "Ny
                             <?php
                             $sql = mysqli_query($conn, "SELECT k_formal, COUNT(nama) AS jml FROM kunci WHERE tahun = '$thn' AND t_kos = '$nmTkos' AND (k_formal = 'IX' OR k_formal = 'XII' OR k_formal = 9 OR k_formal = 3 OR k_formal = 12) AND bulan = 9 GROUP BY k_formal ");
                             while ($hsl = mysqli_fetch_assoc($sql)) {
-                                echo $hsl['k_formal'] . " : " . $hsl['jml'] . "</br>";
+                                echo $hsl['k_formal'] . " = " . $hsl['jml'] . "</br>";
                             }
                             ?>
                         </td>
@@ -124,7 +124,7 @@ $tmpKos = array("-", "Ny. Jamilah", "Gus Zaini", "Ny. Farihah", "Ny. Zahro", "Ny
                             <?php
                             $sql = mysqli_query($conn, "SELECT k_formal, COUNT(nama) AS jml FROM kunci WHERE tahun = '$thn' AND t_kos = '$nmTkos' AND (k_formal = 'IX' OR k_formal = 'XII' OR k_formal = 9 OR k_formal = 3 OR k_formal = 12) AND bulan = 10 GROUP BY k_formal ");
                             while ($hsl = mysqli_fetch_assoc($sql)) {
-                                echo $hsl['k_formal'] . " : " . $hsl['jml'] . "</br>";
+                                echo $hsl['k_formal'] . " = " . $hsl['jml'] . "</br>";
                             }
                             ?>
                         </td>
@@ -132,7 +132,7 @@ $tmpKos = array("-", "Ny. Jamilah", "Gus Zaini", "Ny. Farihah", "Ny. Zahro", "Ny
                             <?php
                             $sql = mysqli_query($conn, "SELECT k_formal, COUNT(nama) AS jml FROM kunci WHERE tahun = '$thn' AND t_kos = '$nmTkos' AND (k_formal = 'IX' OR k_formal = 'XII' OR k_formal = 9 OR k_formal = 3 OR k_formal = 12) AND bulan = 11 GROUP BY k_formal ");
                             while ($hsl = mysqli_fetch_assoc($sql)) {
-                                echo $hsl['k_formal'] . " : " . $hsl['jml'] . "</br>";
+                                echo $hsl['k_formal'] . " = " . $hsl['jml'] . "</br>";
                             }
                             ?>
                         </td>
@@ -140,7 +140,7 @@ $tmpKos = array("-", "Ny. Jamilah", "Gus Zaini", "Ny. Farihah", "Ny. Zahro", "Ny
                             <?php
                             $sql = mysqli_query($conn, "SELECT k_formal, COUNT(nama) AS jml FROM kunci WHERE tahun = '$thn' AND t_kos = '$nmTkos' AND (k_formal = 'IX' OR k_formal = 'XII' OR k_formal = 9 OR k_formal = 3 OR k_formal = 12) AND bulan = 12 GROUP BY k_formal ");
                             while ($hsl = mysqli_fetch_assoc($sql)) {
-                                echo $hsl['k_formal'] . " : " . $hsl['jml'] . "</br>";
+                                echo $hsl['k_formal'] . " = " . $hsl['jml'] . "</br>";
                             }
                             ?>
                         </td>
