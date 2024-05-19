@@ -1,16 +1,6 @@
 <?php
 require 'function.php';
-// $setor =  query("SELECT bulan, COUNT(CASE WHEN t_kos = 1 THEN 1 END) nj,
-//                                 COUNT(CASE WHEN t_kos = 2 THEN 1 END) gz,
-//                                 COUNT(CASE WHEN t_kos = 3 THEN 1 END) nf,
-//                                 COUNT(CASE WHEN t_kos = 4 THEN 1 END) nz,
-//                                 COUNT(CASE WHEN t_kos = 5 THEN 1 END) ns,
-//                                 COUNT(CASE WHEN t_kos = 6 THEN 1 END) nm,
-//                                 COUNT(CASE WHEN t_kos = 7 THEN 1 END) nn,
-//                                 COUNT(CASE WHEN t_kos = 8 THEN 1 END) nl,
-//                                 COUNT(CASE WHEN t_kos = '' THEN 1 END) ks,
-//                                 COUNT(*) AS total, tahun
-//                                 FROM kunci WHERE ket = 0 GROUP BY bulan ");
+
 $bln = array("-", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");
 ?>
 <section class="content-header">
@@ -32,7 +22,16 @@ $bln = array("-", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "July"
         <div class="col-xs-12">
             <div class="box box-success">
                 <div class="box-header">
-                    <h3 class="box-title">Data Jumlah Santri Dekos</h3>
+                    <h3 class="box-title">
+                        <select name="" id="" class="form-control" onchange="navigateToUrl(this)">
+                            <option value="">- pilih tahun -</option>
+                            <?php
+                            $sqly = mysqli_query($conn, "SELECT tahun FROM kunci GROUP BY tahun");
+                            while ($thg = mysqli_fetch_assoc($sqly)) { ?>
+                                <option value="index.php?link=pages/kunci/data&tahun=<?= $thg['tahun'] ?>"><a href=""><?= $thg['tahun'] ?></a></option>
+                            <?php } ?>
+                        </select>
+                    </h3>
                     <a href="index.php?link=pages/kunci/add">
                         <button class="btn btn-success pull-right"><i class="fa fa-plus"></i> Tambah Data Baru</button>
                     </a>
@@ -53,7 +52,13 @@ $bln = array("-", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "July"
                             </thead>
                             <tbody>
                                 <?php $i = 1;
-                                $str = mysqli_query($conn, "SELECT *, COUNT(*) AS total FROM kunci WHERE tahun = '2022/2023' GROUP BY bulan");
+                                if (isset($_GET['tahun'])) {
+                                    $tahunPakai = $_GET['tahun'];
+                                } else {
+                                    $thCek = mysqli_fetch_assoc(mysqli_query($conn, "SELECT tahun FROM kunci GROUP BY tahun ORDER BY tahun DESC LIMIT 1"));
+                                    $tahunPakai = $thCek['tahun'];
+                                }
+                                $str = mysqli_query($conn, "SELECT *, COUNT(*) AS total FROM kunci WHERE tahun = '$tahunPakai' GROUP BY bulan");
                                 foreach ($str as $r) :
                                     $bull = $r['bulan'];
                                     $thh = $r['tahun'];
@@ -93,4 +98,12 @@ $bln = array("-", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "July"
             "autoWidth": false
         });
     });
+</script>
+<script>
+    function navigateToUrl(selectElement) {
+        var selectedUrl = selectElement.value;
+        if (selectedUrl) {
+            window.location.href = selectedUrl;
+        }
+    }
 </script>
