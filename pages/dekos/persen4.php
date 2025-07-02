@@ -2,7 +2,7 @@
 
 //use function PHPSTORM_META\map;
 
-require 'function.php';
+
 $bln = array("-", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");
 
 ?>
@@ -330,8 +330,8 @@ $bln = array("-", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "July"
                                             <td><?= $no++ ?></td>
                                             <td><?= $asp['nama'] ?></td>
                                             <td><?= $pb['total'] ?></td>
-                                            <td><?= round(($pb['total'] / $san) * 100, 1) ?> %</td>
-                                            <th><?= rupiah(($tot2 / $san) * $pb['total']) ?></th>
+                                            <td><?= round(($pb['total'] / $san) * 100,1) ?> %</td>
+                                            <th><?= rupiah(($tot2 * $pb['total']) / $san) ?></th>
                                         </tr>
                                     <?php } ?>
                                 </tbody>

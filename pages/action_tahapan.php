@@ -1,5 +1,5 @@
 <?php
-require 'function.php';
+
 
 if (isset($_GET['aksi'])) {
     switch ($_GET['aksi']) {

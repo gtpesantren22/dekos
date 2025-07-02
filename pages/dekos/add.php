@@ -1,5 +1,5 @@
 <?php
-require 'function.php';
+
 $santri =  query("SELECT * FROM tb_santri WHERE aktif = 'Y' ORDER by nis ASC");
 // if (isset($_POST["simpan"])) {
 //     if (add_dekos($_POST) > 0) {

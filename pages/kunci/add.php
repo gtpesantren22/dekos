@@ -1,5 +1,4 @@
 <?php
-require 'function.php';
 
 $setor = mysqli_query($conn, "SELECT a.t_kos, COUNT(*) as total, b.nama, 
                                     COUNT(CASE WHEN a.ket = 0 THEN 1 END) bayar,
@@ -48,7 +47,7 @@ $total = mysqli_fetch_assoc(mysqli_query($conn, "SELECT a.t_kos, COUNT(*) as tot
                                         <option value=""> -- pilih bulan --</option>
                                         <?php
                                         for ($i = 1; $i <= 12; $i++) { ?>
-                                        <option value="<?= $i; ?>"><?= $bl[$i] ?></option>
+                                            <option value="<?= $i; ?>"><?= $bl[$i] ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -60,7 +59,7 @@ $total = mysqli_fetch_assoc(mysqli_query($conn, "SELECT a.t_kos, COUNT(*) as tot
                                         <?php
                                         $th = mysqli_query($conn, "SELECT * FROM tahun");
                                         while ($dth = mysqli_fetch_assoc($th)) { ?>
-                                        <option value="<?= $dth['nama'] ?>"><?= $dth['nama'] ?></option>
+                                            <option value="<?= $dth['nama'] ?>"><?= $dth['nama'] ?></option>
                                         <?php } ?>
                                     </select>
                                 </div>
@@ -90,19 +89,19 @@ $total = mysqli_fetch_assoc(mysqli_query($conn, "SELECT a.t_kos, COUNT(*) as tot
                             <tbody>
                                 <?php $i = 1;
                                 while ($r = mysqli_fetch_assoc($setor)) { ?>
-                                <tr>
-                                    <td><?= $i++ ?></td>
-                                    <td><?= $r['nama'] ?></td>
-                                    <td><?= $r['bayar'] ?></td>
-                                    <td><?= $r['ustd'] ?></td>
-                                    <td><?= $r['gratis'] ?></td>
-                                    <td><?= $r['khaddam'] ?></td>
-                                    <td><?= $r['total'] ?></td>
-                                    <td><a href="<?= 'index.php?link=pages/kunci/add2&tks=' . $r['t_kos']; ?>"><button
-                                                class="btn btn-success btn-xs"><i class="fa fa-users"></i> Lihat
-                                                Santri</button></a>
-                                    </td>
-                                </tr>
+                                    <tr>
+                                        <td><?= $i++ ?></td>
+                                        <td><?= $r['nama'] ?></td>
+                                        <td><?= $r['bayar'] ?></td>
+                                        <td><?= $r['ustd'] ?></td>
+                                        <td><?= $r['gratis'] ?></td>
+                                        <td><?= $r['khaddam'] ?></td>
+                                        <td><?= $r['total'] ?></td>
+                                        <td><a href="<?= 'index.php?link=pages/kunci/add2&tks=' . $r['t_kos']; ?>"><button
+                                                    class="btn btn-success btn-xs"><i class="fa fa-users"></i> Lihat
+                                                    Santri</button></a>
+                                        </td>
+                                    </tr>
                                 <?php } ?>
                             </tbody>
                             <tfoot>
@@ -124,17 +123,17 @@ $total = mysqli_fetch_assoc(mysqli_query($conn, "SELECT a.t_kos, COUNT(*) as tot
     </div><!-- /.row -->
 </section><!-- /.content -->
 <script>
-$(function() {
-    $("#example1").DataTable();
-    $('#example2').DataTable({
-        "paging": true,
-        "lengthChange": false,
-        "searching": false,
-        "ordering": true,
-        "info": true,
-        "autoWidth": false
+    $(function() {
+        $("#example1").DataTable();
+        $('#example2').DataTable({
+            "paging": true,
+            "lengthChange": false,
+            "searching": false,
+            "ordering": true,
+            "info": true,
+            "autoWidth": false
+        });
     });
-});
 </script>
 
 <?php

@@ -1,5 +1,5 @@
 <?php
-require 'function.php';
+
 //$id = $_GET["id"];
 $id = $_GET["id"];
 $r = query("SELECT * FROM kos WHERE id = $id ")[0];

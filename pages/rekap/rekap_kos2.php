@@ -1,9 +1,6 @@
-<?php
-require 'function.php';
-?>
 <section class="content-header">
     <h1><span class="fa fa-cutlery"> </span>
-        Rekap Data Dekosan
+        Input Data Setoran
         <small>Preview</small>
     </h1>
     <ol class="breadcrumb">
@@ -60,15 +57,15 @@ require 'function.php';
                                     <div class="input-group-addon">
                                         <i class="fa fa-gender"></i>
                                     </div>
-                                    <select name="tahun" id="" class="form-control" required>
-                                        <option value=""> --pilih tahun-- </option>
+                                    <select name="tempat" id="" class="form-control" required>
+                                        <option value=""> --pilih tempat-- </option>
                                         <?php
-                                        $th = mysqli_query($conn, "SELECT * FROM tahun ");
+                                        $th = mysqli_query($conn, "SELECT * FROM tempat ");
                                         $no = 0;
                                         while ($thn = mysqli_fetch_array($th)) {
                                             $no++;
                                         ?>
-                                            <option value="<?= $thn['nama'] ?>"><?= $thn['nama'] ?>
+                                            <option value="<?= $thn['kd_tmp'] ?>"><?= $thn['nama'] ?>
                                             </option>
                                         <?php
                                         }
@@ -88,119 +85,154 @@ require 'function.php';
         <?php
         if (isset($_POST['cari'])) {
             //$tgl = $_POST['tanggal'];
-            $tahun = $_POST['tahun'];
+            $tempat = $_POST['tempat'];
             $bulan = $_POST['bulan'];
 
             $bln = array("-", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");
-            $tt = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(nominal) AS tt1 FROM kos WHERE bulan = $bulan  "));
-            $nomm = $tt['tt1'];
+            $tkos = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM tempat WHERE kd_tmp = $tempat  "));
 
-            $masuk = mysqli_query($conn, "SELECT tgl, bulan, SUM(nominal) AS total FROM kos WHERE bulan = $bulan AND tahun = '$tahun' GROUP BY tgl ASC");
-            $pa = mysqli_fetch_assoc(mysqli_query($conn, "SELECT a.tgl, a.bulan, a.tahun, SUM(a.nominal) AS total, b.jkl FROM kos AS a INNER JOIN tb_santri AS b ON a.nis=b.nis WHERE a.bulan = $bulan AND tahun = '$tahun' AND jkl = 'Laki-laki' "));
-            $pi = mysqli_fetch_assoc(mysqli_query($conn, "SELECT a.tgl, a.bulan, a.tahun, SUM(a.nominal) AS total, b.jkl FROM kos AS a INNER JOIN tb_santri AS b ON a.nis=b.nis WHERE a.bulan = $bulan AND tahun = '$tahun' AND jkl = 'Perempuan' "));
-            $str = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(pa) AS pa, SUM(pi) AS pi, bulan FROM setor WHERE bulan = $bulan AND tahun = '$tahun' GROUP BY bulan ASC"));
-            
-            $spa = $pa['total'] - $str['pa'];
-            $spi = $pi['total'] - $str['pi'];
         ?>
-            <form action="" method="post">
-                <div class="col-md-12">
-                    <div class="box box-primary">
-                        <div class="box-header">
-                            <h3 class="box-title">
-                                Data Tanggal :
-                                <br />
-                                <br />
-                                <p class="label label-warning"><?= $bln[$bulan]; ?></p> -
-                                <p class="label label-info"><?= $tahun; ?></p>
-                            </h3>
-                            <a href="<?= 'pages/rekap/excel_kos.php?pa=' . $spa . '&pi=' . $spi . 'bulan=' . $bulan . '&tahun=' . $tahun  ?>" target="_blank" type="button" class="btn btn-success pull-right"><span class="fa fa-download">
-                                </span>
-                                Download excel</a>
-                            <a href="<?= 'pages/setor/add.php?pa=' . $spa . '&pi=' . $spi . '&bulan=' . $bulan . '&tahun=' . $tahun   ?>" target="_balnk" type="button" class="btn btn-danger pull-right"><span class="fa fa-check">
-                                </span>
-                                Input Setor</a>
-                        </div>
-                        <hr>
-                        <div class="box-body">
-                            <div class="table-responsive">
-                            <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Tanggal</th>
-                                        <th>Uraian</th>
-                                        <th>Debet</th>
-                                        <th>Kredit</th>
-                                        <th>Saldo</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <?php
-                                    $i = 1;
-                                    ?>
-                                    <?php foreach ($masuk as $r) : ?>
-                                        <tr>
-                                            <td><?= $i; ?></td>
-                                            <td><?= date("d/m/Y", strtotime($r["tgl"])); ?> </td>
-                                            <td>Dekosan </td>
-                                            <td><?= rupiah($r["total"]); ?></td>
-                                            <td>- </td>
-                                            <td> </td>
-                                        </tr>
-                                        <?php $i++; ?>
-                                    <?php endforeach; ?>
-                                </tbody>
-                            </table>
-                            </div>
-                        </div><!-- /.box-body -->
+
+            <div class="col-md-7">
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h3 class="box-title">
+                            Data Pilihan :
+
+                            <p class="label label-warning"><?= $bln[$bulan]; ?></p> -
+                            <p class="label label-info"><?= $tkos['nama']; ?></p>
+                        </h3>
                     </div>
+                    <div class="box-body">
+                        <div id="data-setoran"></div>
+                    </div><!-- /.box-body -->
                 </div>
-                <div class="col-md-8">
-                    <div class="box">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">Bordered Table</h3>
-                        </div><!-- /.box-header -->
-                        <div class="box-body">
-                            <table class="table table-bordered">
-                                <tr>
-                                    <th style="width: 10px">#</th>
-                                    <th>Data dari</th>
-                                    <th>Jumlah</th>
-                                    <th>Sudah Setor</th>
-                                    <th>Sisa</th>
-                                </tr>
-                                <tr>
-                                    <td>1.</td>
-                                    <td>Santri Putra</td>
-                                    <td><?= rupiah($pa['total']) ?></td>
-                                    <td><?= rupiah($str['pa']) ?></td>
-                                    <td><?= rupiah($pa['total'] - $str['pa']) ?></td>
-                                </tr>
-                                <tr>
-                                    <td>2.</td>
-                                    <td>Santri Putri</td>
-                                    <td><?= rupiah($pi['total']) ?></td>
-                                    <td><?= rupiah($str['pi']) ?></td>
-                                    <td><?= rupiah($pi['total'] - $str['pi']) ?></td>
-                                </tr>
-                                <tr>
-                                    <th colspan="2">Total</th>
-                                    <th><?= rupiah($pa['total'] + $pi['total']) ?></th>
-                                    <th><?= rupiah($str['pa'] + $str['pi']) ?></th>
-                                    <th><?= rupiah(($pa['total'] - $str['pa']) + ($pi['total'] - $str['pi'])) ?></th>
-                                </tr>
-                            </table>
-                        </div><!-- /.box-body -->
-                    </div><!-- /.box -->
-                </div>
-                <div class="col-md-4">
-                    <div class="box-footer">
-                        <h3 class="text-center"><label class="label label-warning"> JUMLAH SETORAN HARI INI : <br /><br />&nbsp;
-                                <?= rupiah(($pa['total'] - $str['pa']) + ($pi['total'] - $str['pi'])); ?></label></h3>
-                    </div><!-- /.box-footer -->
-                </div>
-            </form>
+            </div>
+            <div class="col-md-5">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Input Setoran</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <form action="" method="post" id="simpan-form" class="form-horizontal">
+                            <input type="hidden" name="tahun" value="<?= $tahun_ajaran ?>">
+                            <input type="hidden" name="tempat" value="<?= $tempat ?>">
+                            <input type="hidden" name="penyetor" value="<?= $nama ?>">
+                            <input type="hidden" name="sisa" value="<?= $psr90 - $jmlSetor ?>">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Bulan</label>
+                                <div class="col-sm-10">
+                                    <input type="number" name="bulan" class="form-control" id="inputEmail3" value="<?= $bulan ?>" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">Tanggal</label>
+                                <div class="col-sm-10">
+                                    <input type="date" name="tanggal" class="form-control" id="" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">Nominal</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="nominal" class="form-control" id="rupiah" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">Metode</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="via" required>
+                                        <option value="Tunai">Tunai</option>
+                                        <option value="Transfer">Transfer</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label"></label>
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-save"></i> Simpan</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div>
+            <!-- Toastr CSS -->
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+            <!-- Toastr JS -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+            <script>
+                $(document).ready(function() {
+                    loadtable(<?= $bulan ?>, '<?= $tahun_ajaran ?>', <?= $tempat ?>)
+                })
+
+                function loadtable(bulan, tahun, tkos) {
+                    $.ajax({
+                        type: "POST",
+                        url: 'ajax/table_setoran.php',
+                        dataType: 'html',
+                        data: {
+                            bulan: bulan,
+                            tahun: tahun,
+                            tkos: tkos
+                        },
+                        success: function(data) {
+                            $('#data-setoran').html(data);
+                        },
+                        error: function(xhr, status, error) {
+                            alert(xhr.responseText);
+                        }
+                    });
+                }
+
+                $('#simpan-form').on('submit', function(e) {
+                    e.preventDefault();
+                    var form = $(this);
+
+                    $.ajax({
+                        type: "POST",
+                        url: 'ajax/simpan_setor.php',
+                        data: form.serialize(),
+                        dataType: 'json',
+                        success: function(response) {
+                            if (response.status === 'success') {
+                                toastr.success(response.message, 'Berhasil');
+                                loadtable(<?= $bulan ?>, '<?= $tahun_ajaran ?>', <?= $tempat ?>)
+                            } else {
+                                toastr.error(response.message, 'Error');
+                            }
+                        },
+                        error: function(xhr, status, error) {
+                            console.error('AJAX ERROR:', status, error);
+                            console.log('Response Text:', xhr.responseText);
+                        }
+                    })
+                })
+
+                function delItem(id) {
+                    if (confirm('Yakin ingin menghapus ini ???')) {
+                        $.ajax({
+                            type: "POST",
+                            url: 'ajax/del_setor.php',
+                            data: {
+                                id: id
+                            },
+                            dataType: 'json',
+                            success: function(response) {
+                                if (response.status === 'success') {
+                                    toastr.success(response.message, 'Berhasil');
+                                    loadtable(<?= $bulan ?>, '<?= $tahun_ajaran ?>', <?= $tempat ?>)
+                                } else {
+                                    toastr.error(response.message, 'Error');
+                                }
+                            },
+                            error: function(xhr, status, error) {
+                                alert(xhr.responseText);
+                            }
+                        })
+                    }
+                }
+            </script>
         <?php
         }
         ?>

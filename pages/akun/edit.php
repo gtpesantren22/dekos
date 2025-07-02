@@ -1,5 +1,5 @@
 <?php
-require 'function.php';
+
 $id = $_GET["id"];
 $r = query("SELECT * FROM item WHERE id_item = $id ")[0];
 if (isset($_POST["simpan"])) {

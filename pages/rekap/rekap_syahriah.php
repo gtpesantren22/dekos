@@ -1,6 +1,3 @@
-<?php
-require 'function.php';
-?>
 <section class="content-header">
     <h1>
         Rekap Data Syahriah
@@ -57,124 +54,126 @@ require 'function.php';
                             $dari1 = date("Y-m-d", strtotime($tgl1));
 
                         ?>
-                        <form action="" method="post">
-                            <div class="box box-primary">
-                                <div class="box-header">
-                                    <h3 class="box-title">
-                                        Data Tanggal :
-                                        <br />
-                                        <br />
-                                        <p class="label label-success"> Putra</p> <p class="label label-primary"> <?= date('d F Y', strtotime($tgl1)); ?></p>
-                                    </h3>
-                                    <a href="<?= 'pages/rekap/excel_syahriah.php?tanggal=' . $dari1 ?>" target="_blank"
-                                        type="button" class="btn bg-purple pull-right"><span
-                                            class="fa  fa-file-excel-o">
-                                        </span>
-                                        Export to excel</a>
-                                    <a href="<?= 'pages/rekap/print_syahriah.php?tanggal=' . $dari1 ?>" target="_balnk"
-                                        type="button" class="btn btn-danger pull-right"><span class="fa fa-print">
-                                        </span>
-                                        Print</a>
-                                </div>
-                                <hr>
-                                <div class="box-body">
-                                    <table id="example1" class="table table-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>NIS</th>
-                                                <th>Nama</th>
-                                                <th>Tanggal Bayar</th>
-                                                <th>Nominal</th>
-                                                <th>Petugas</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
+                            <form action="" method="post">
+                                <div class="box box-primary">
+                                    <div class="box-header">
+                                        <h3 class="box-title">
+                                            Data Tanggal :
+                                            <br />
+                                            <br />
+                                            <p class="label label-success"> Putra</p>
+                                            <p class="label label-primary"> <?= date('d F Y', strtotime($tgl1)); ?></p>
+                                        </h3>
+                                        <a href="<?= 'pages/rekap/excel_syahriah.php?tanggal=' . $dari1 ?>" target="_blank"
+                                            type="button" class="btn bg-purple pull-right"><span
+                                                class="fa  fa-file-excel-o">
+                                            </span>
+                                            Export to excel</a>
+                                        <a href="<?= 'pages/rekap/print_syahriah.php?tanggal=' . $dari1 ?>" target="_balnk"
+                                            type="button" class="btn btn-danger pull-right"><span class="fa fa-print">
+                                            </span>
+                                            Print</a>
+                                    </div>
+                                    <hr>
+                                    <div class="box-body">
+                                        <table id="example1" class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>NIS</th>
+                                                    <th>Nama</th>
+                                                    <th>Tanggal Bayar</th>
+                                                    <th>Nominal</th>
+                                                    <th>Petugas</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
                                                 $i = 1;
                                                 $syahriah1 = mysqli_query($conn, "SELECT a.*, b.* FROM syahriah a JOIN tb_santri b on a.nis=b.nis WHERE a.tgl = '$tgl1' AND b.jkl = 'Laki-laki' ");
                                                 $total1 = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(a.nominal) AS total FROM syahriah a JOIN tb_santri b on a.nis=b.nis WHERE a.tgl = '$tgl1' AND b.jkl = 'Laki-laki' "));
                                                 ?>
-                                            <?php foreach ($syahriah1 as $r1) : ?>
-                                            <tr>
-                                                <td><?= $i; ?></td>
-                                                <td><?= $r1["nis"]; ?> </td>
-                                                <td><?= $r1["nama"]; ?> </td>
-                                                <td><?= date("d-M-Y", strtotime($r1["tgl"])); ?> </td>
-                                                <td><?= rupiah($r1["nominal"]); ?></td>
-                                                <td><?= $r1["kasir"]; ?> </td>
-                                            </tr>
-                                            <?php $i++; ?>
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
-                                </div><!-- /.box-body -->
-                                <div class="box-footer">
-                                    <h3 class="text-center"><label class="label label-warning"> JUMLAH TOTAL
-                                            PENGELUARAN :
-                                            <?= rupiah($total1['total']); ?></label></h3>
-                                </div><!-- /.box-footer -->
-                            </div>
-                            
-                            <!--Data Putri-->
-                            <div class="box box-primary">
-                                <div class="box-header">
-                                    <h3 class="box-title">
-                                        Data Tanggal :
-                                        <br />
-                                        <br />
-                                        <p class="label label-danger"> Putri</p> <p class="label label-primary"> <?= date('d F Y', strtotime($tgl1)); ?></p>
-                                    </h3>
-                                    <a href="<?= 'pages/rekap/excel_syahriah.php?tanggal=' . $dari1 ?>" target="_blank"
-                                        type="button" class="btn bg-purple pull-right"><span
-                                            class="fa  fa-file-excel-o">
-                                        </span>
-                                        Export to excel</a>
-                                    <a href="<?= 'pages/rekap/print_syahriah.php?tanggal=' . $dari1 ?>" target="_balnk"
-                                        type="button" class="btn btn-danger pull-right"><span class="fa fa-print">
-                                        </span>
-                                        Print</a>
+                                                <?php foreach ($syahriah1 as $r1) : ?>
+                                                    <tr>
+                                                        <td><?= $i; ?></td>
+                                                        <td><?= $r1["nis"]; ?> </td>
+                                                        <td><?= $r1["nama"]; ?> </td>
+                                                        <td><?= date("d-M-Y", strtotime($r1["tgl"])); ?> </td>
+                                                        <td><?= rupiah($r1["nominal"]); ?></td>
+                                                        <td><?= $r1["kasir"]; ?> </td>
+                                                    </tr>
+                                                    <?php $i++; ?>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div><!-- /.box-body -->
+                                    <div class="box-footer">
+                                        <h3 class="text-center"><label class="label label-warning"> JUMLAH TOTAL
+                                                PENGELUARAN :
+                                                <?= rupiah($total1['total']); ?></label></h3>
+                                    </div><!-- /.box-footer -->
                                 </div>
-                                <hr>
-                                <div class="box-body">
-                                    <table id="example1" class="table table-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>NIS</th>
-                                                <th>Nama</th>
-                                                <th>Tanggal Bayar</th>
-                                                <th>Nominal</th>
-                                                <th>Petugas</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
+
+                                <!--Data Putri-->
+                                <div class="box box-primary">
+                                    <div class="box-header">
+                                        <h3 class="box-title">
+                                            Data Tanggal :
+                                            <br />
+                                            <br />
+                                            <p class="label label-danger"> Putri</p>
+                                            <p class="label label-primary"> <?= date('d F Y', strtotime($tgl1)); ?></p>
+                                        </h3>
+                                        <a href="<?= 'pages/rekap/excel_syahriah.php?tanggal=' . $dari1 ?>" target="_blank"
+                                            type="button" class="btn bg-purple pull-right"><span
+                                                class="fa  fa-file-excel-o">
+                                            </span>
+                                            Export to excel</a>
+                                        <a href="<?= 'pages/rekap/print_syahriah.php?tanggal=' . $dari1 ?>" target="_balnk"
+                                            type="button" class="btn btn-danger pull-right"><span class="fa fa-print">
+                                            </span>
+                                            Print</a>
+                                    </div>
+                                    <hr>
+                                    <div class="box-body">
+                                        <table id="example1" class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>NIS</th>
+                                                    <th>Nama</th>
+                                                    <th>Tanggal Bayar</th>
+                                                    <th>Nominal</th>
+                                                    <th>Petugas</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
                                                 $i = 1;
                                                 $syahriah1 = mysqli_query($conn, "SELECT a.*, b.* FROM syahriah a JOIN tb_santri b on a.nis=b.nis WHERE a.tgl = '$tgl1' AND b.jkl = 'Perempuan' ");
                                                 $total1 = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(a.nominal) AS total FROM syahriah a JOIN tb_santri b on a.nis=b.nis WHERE a.tgl = '$tgl1' AND b.jkl = 'Perempuan' "));
                                                 ?>
-                                            <?php foreach ($syahriah1 as $r1) : ?>
-                                            <tr>
-                                                <td><?= $i; ?></td>
-                                                <td><?= $r1["nis"]; ?> </td>
-                                                <td><?= $r1["nama"]; ?> </td>
-                                                <td><?= date("d-M-Y", strtotime($r1["tgl"])); ?> </td>
-                                                <td><?= rupiah($r1["nominal"]); ?></td>
-                                                <td><?= $r1["kasir"]; ?> </td>
-                                            </tr>
-                                            <?php $i++; ?>
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
-                                </div><!-- /.box-body -->
-                                <div class="box-footer">
-                                    <h3 class="text-center"><label class="label label-warning"> JUMLAH TOTAL
-                                            PENGELUARAN :
-                                            <?= rupiah($total1['total']); ?></label></h3>
-                                </div><!-- /.box-footer -->
-                            </div>
-                        </form>
+                                                <?php foreach ($syahriah1 as $r1) : ?>
+                                                    <tr>
+                                                        <td><?= $i; ?></td>
+                                                        <td><?= $r1["nis"]; ?> </td>
+                                                        <td><?= $r1["nama"]; ?> </td>
+                                                        <td><?= date("d-M-Y", strtotime($r1["tgl"])); ?> </td>
+                                                        <td><?= rupiah($r1["nominal"]); ?></td>
+                                                        <td><?= $r1["kasir"]; ?> </td>
+                                                    </tr>
+                                                    <?php $i++; ?>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div><!-- /.box-body -->
+                                    <div class="box-footer">
+                                        <h3 class="text-center"><label class="label label-warning"> JUMLAH TOTAL
+                                                PENGELUARAN :
+                                                <?= rupiah($total1['total']); ?></label></h3>
+                                    </div><!-- /.box-footer -->
+                                </div>
+                            </form>
                         <?php
                         }
                         ?>
@@ -217,68 +216,68 @@ require 'function.php';
                             $sampai = date("Y-m-d", strtotime($tg[1]));
 
                         ?>
-                        <form action="" method="post">
-                            <div class="box box-primary">
-                                <div class="box-header">
-                                    <h3 class="box-title">
-                                        Data Tanggal :
-                                        <br />
-                                        <br />
-                                        <p class="label label-primary"> <?= date('d F Y', strtotime($tg[0])); ?></p>
-                                        s/d
-                                        <p class="label label-primary"> <?= date('d F Y', strtotime($tg[1])); ?></p>
-                                    </h3>
-                                    <a href="<?= 'pages/rekap/excel_syahriah.php?dari=' . $dari . '&sampai=' . $sampai ?>"
-                                        target="_blank" type="button" class="btn bg-purple pull-right"><span
-                                            class="fa  fa-file-excel-o">
-                                        </span>
-                                        Export to excel</a>
-                                    <a href="<?= 'pages/rekap/print_syahriah.php?dari=' . $dari . '&sampai=' . $sampai ?>"
-                                        target="_balnk" type="button" class="btn btn-danger pull-right"><span
-                                            class="fa fa-print">
-                                        </span>
-                                        Print</a>
-                                </div>
-                                <hr>
-                                <div class="box-body">
-                                    <table id="example1" class="table table-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>No</th>
-                                                <th>NIS</th>
-                                                <th>Nama</th>
-                                                <th>Tanggal</th>
-                                                <th>Nominal</th>
-                                                <th>Petugas</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <?php
+                            <form action="" method="post">
+                                <div class="box box-primary">
+                                    <div class="box-header">
+                                        <h3 class="box-title">
+                                            Data Tanggal :
+                                            <br />
+                                            <br />
+                                            <p class="label label-primary"> <?= date('d F Y', strtotime($tg[0])); ?></p>
+                                            s/d
+                                            <p class="label label-primary"> <?= date('d F Y', strtotime($tg[1])); ?></p>
+                                        </h3>
+                                        <a href="<?= 'pages/rekap/excel_syahriah.php?dari=' . $dari . '&sampai=' . $sampai ?>"
+                                            target="_blank" type="button" class="btn bg-purple pull-right"><span
+                                                class="fa  fa-file-excel-o">
+                                            </span>
+                                            Export to excel</a>
+                                        <a href="<?= 'pages/rekap/print_syahriah.php?dari=' . $dari . '&sampai=' . $sampai ?>"
+                                            target="_balnk" type="button" class="btn btn-danger pull-right"><span
+                                                class="fa fa-print">
+                                            </span>
+                                            Print</a>
+                                    </div>
+                                    <hr>
+                                    <div class="box-body">
+                                        <table id="example1" class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th>No</th>
+                                                    <th>NIS</th>
+                                                    <th>Nama</th>
+                                                    <th>Tanggal</th>
+                                                    <th>Nominal</th>
+                                                    <th>Petugas</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
                                                 $i = 1;
                                                 $syahriah = mysqli_query($conn, "SELECT * FROM syahriah WHERE tgl BETWEEN '$dari' AND '$sampai' ORDER by id ASC");
                                                 $total = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(nominal) AS total FROM syahriah WHERE tgl BETWEEN '$dari' AND '$sampai' "));
                                                 ?>
-                                            <?php foreach ($syahriah as $r) : ?>
-                                            <tr>
-                                                <td><?= $i; ?></td>
-                                                <td><?= $r["nis"]; ?> </td>
-                                                <td><?= $r["nama"]; ?> </td>
-                                                <td><?= $r["tgl"]; ?> </td>
-                                                <td><?= rupiah($r["nominal"]); ?></td>
-                                                <td><?= $r["kasir"]; ?> </td>
-                                            </tr>
-                                            <?php $i++; ?>
-                                            <?php endforeach; ?>
-                                        </tbody>
-                                    </table>
-                                </div><!-- /.box-body -->
-                                <div class="box-footer">
-                                    <h3 class="text-center"><label class="label label-warning"> JUMLAH TOTAL
-                                            PENGELUARAN :
-                                            <?= rupiah($total['total']); ?></label></h3>
-                                </div><!-- /.box-footer -->
-                            </div>
-                        </form>
+                                                <?php foreach ($syahriah as $r) : ?>
+                                                    <tr>
+                                                        <td><?= $i; ?></td>
+                                                        <td><?= $r["nis"]; ?> </td>
+                                                        <td><?= $r["nama"]; ?> </td>
+                                                        <td><?= $r["tgl"]; ?> </td>
+                                                        <td><?= rupiah($r["nominal"]); ?></td>
+                                                        <td><?= $r["kasir"]; ?> </td>
+                                                    </tr>
+                                                    <?php $i++; ?>
+                                                <?php endforeach; ?>
+                                            </tbody>
+                                        </table>
+                                    </div><!-- /.box-body -->
+                                    <div class="box-footer">
+                                        <h3 class="text-center"><label class="label label-warning"> JUMLAH TOTAL
+                                                PENGELUARAN :
+                                                <?= rupiah($total['total']); ?></label></h3>
+                                    </div><!-- /.box-footer -->
+                                </div>
+                            </form>
                         <?php
                         }
                         ?>

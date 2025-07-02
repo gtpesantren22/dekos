@@ -1,5 +1,5 @@
 <?php
-require 'function.php';
+
 $masuk =  query("SELECT * FROM item ORDER by id_item ASC");
 ?>
 <section class="content-header">

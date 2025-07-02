@@ -1,5 +1,5 @@
 <?php
-require 'function.php';
+
 if (isset($_POST["simpan"])) {
     if (add_akun($_POST) > 0) {
         echo "

@@ -1,6 +1,6 @@
 <?php
-require 'function.php';
-$setor =  query("SELECT * FROM setor ORDER BY tgl DESC ");
+
+$setor =  query("SELECT * FROM setor WHERE tahun = '$tahun_ajaran' ORDER BY tgl DESC ");
 $jum = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(nominal) AS total FROM kos"));
 $jum2 = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(nominal) AS total FROM setor"));
 $bln = array("-", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");

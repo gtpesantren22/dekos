@@ -1,5 +1,5 @@
 <?php
-require 'function.php';
+
 $masuk =  query("SELECT * FROM syahriah ORDER by id ASC");
 $jum = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(nominal) AS total FROM syahriah"))
 ?>

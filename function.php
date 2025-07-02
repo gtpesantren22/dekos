@@ -10,6 +10,7 @@ $conn2 = mysqli_connect("localhost", "root", "", "db_santri");
 // $conn = mysqli_connect("localhost", "u9048253_dwk", "PesantrenDWKIT2021", "u9048253_dekos");
 // $conn2 = mysqli_connect("localhost", "u9048253_dwk", "PesantrenDWKIT2021", "u9048253_santri");
 
+$tarif = 300000;
 $sql_tmp = mysqli_query($conn, "SELECT * FROM tempat");
 $bulan_data = array("", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "July", "Agustus", "September", "Oktober", "November", "Desember");
 
@@ -531,6 +532,7 @@ function rupiah($angka)
     $hasil_rupiah = "Rp. " . number_format($angka, 0, ',', '.');
     return $hasil_rupiah;
 }
-?>
-
-<!-- akhir -->
+function rmRp($string)
+{
+    return preg_replace("/[^0-9]/", "", $string);
+}

@@ -1,5 +1,4 @@
 <?php
-require 'function.php';
 $tks = $_GET['tks'];
 
 $dt = mysqli_query($conn, "SELECT * FROM tb_santri WHERE aktif = 'Y' AND t_kos = $tks GROUP BY ket ");

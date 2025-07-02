@@ -1,5 +1,5 @@
 <?php
-require 'function.php';
+
 
 $bln = array(
     1 => "Januari", "Februari", "Maret", "April", "Mei",

@@ -1,6 +1,4 @@
-<?php
-require 'function.php';
-?>
+
 <section class="content-header">
     <h1><span class="fa fa-cutlery"> </span>
         Cek Data Dekosan (Perkelas)
@@ -27,7 +25,7 @@ require 'function.php';
                                 <select name="t_formal" id="t_formal" class="form-control" required>
                                     <option value="">Pilih Lembaga</option>
                                     <?php
-                                    $sq = mysqli_query($conn, "SELECT lembaga FROM kelas GROUP BY lembaga");
+                                    $sq = mysqli_query($conn, "SELECT lembaga FROM kl_formal GROUP BY lembaga");
                                     while ($kl = mysqli_fetch_assoc($sq)) {
                                     ?>
                                         <option value="<?= $kl['lembaga'] ?>"><?= $kl['lembaga'] ?>
@@ -98,7 +96,13 @@ require 'function.php';
         <?php
         if (isset($_POST['cari'])) {
             $kelas = $_POST['k_formal'];
+            $klsK = explode('-', $kelas);
+            
+            $kls = $klsK[0];
+            $jur = $klsK[1];
+            $rom = $klsK[2];
             $tingkat = $_POST['t_formal'];
+            
             $bulan = $_POST['bulan'];
             $tahun = $_POST['tahun'];
 
@@ -150,11 +154,11 @@ require 'function.php';
                             mysqli_query($conn, "DROP VIEW IF EXISTS rekap");
                             mysqli_query($conn, "DROP VIEW IF EXISTS rekap2");
 
-                            mysqli_query($conn, "CREATE VIEW rekap AS SELECT SUM(a.nominal) AS jml, b.nama, b.k_formal, b.nis, b.t_formal FROM kos AS a 
-                            JOIN kunci AS b ON a.nis = b.nis WHERE b.k_formal = '$kelas' AND b.t_formal = '$tingkat' 
+                            mysqli_query($conn, "CREATE VIEW rekap AS SELECT SUM(a.nominal) AS jml, b.nama, b.k_formal, b.nis, b.t_formal, b.r_formal, b.jurusan FROM kos AS a 
+                            JOIN kunci AS b ON a.nis = b.nis WHERE b.k_formal = '$kls' AND b.t_formal = '$tingkat' AND b.r_formal = '$rom' AND b.jurursan = '$jur' 
                             AND a.bulan = $bulan AND a.tahun = '$tahun' AND b.bulan = $bulan AND b.tahun = '$tahun' AND ket = 0 GROUP BY nis ORDER BY nominal ASC");
 
-                            mysqli_query($conn, "CREATE VIEW rekap2 AS SELECT nama, nis FROM kunci WHERE k_formal = '$kelas' AND t_formal = '$tingkat' AND ket = 0  AND bulan = $bulan AND tahun = '$tahun' ");
+                            mysqli_query($conn, "CREATE VIEW rekap2 AS SELECT nama, nis FROM kunci WHERE k_formal = '$kls' AND t_formal = '$tingkat' AND r_formal = '$rom' AND jurursan = '$jur' AND ket = 0  AND bulan = $bulan AND tahun = '$tahun' ");
 
                             $lunas = mysqli_query($conn, "SELECT * FROM rekap WHERE jml >= 300000 ");
                             $belum = mysqli_query($conn, "SELECT * FROM rekap WHERE jml < 300000 ");

@@ -1,5 +1,5 @@
 <?php
-require 'function.php';
+
 
 $kd = $_GET['id'];
 $santri =  query("SELECT a.*, b.nama, b.k_formal, b.t_formal FROM kosmen a JOIN tb_santri b ON a.nis=b.nis WHERE b.aktif = 'Y' AND a.t_kos = $kd AND b.ket = 0 ");

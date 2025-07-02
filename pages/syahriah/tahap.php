@@ -1,5 +1,5 @@
 <?php
-require 'function.php';
+
 if (isset($_POST["simpan"])) {
     if (syahriah($_POST) > 0) {
         echo "

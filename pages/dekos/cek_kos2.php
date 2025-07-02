@@ -1,6 +1,4 @@
-<?php
-require 'function.php';
-?>
+
 <section class="content-header">
     <h1><span class="fa fa-cutlery"> </span>
         Cek Data Dekosan (Sluruh Santri)

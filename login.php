@@ -12,6 +12,7 @@ if (isset($_POST["log"])) {
     $password = htmlspecialchars(mysqli_real_escape_string($conn, $_POST["password"]));
 
     $sql = mysqli_query($conn, "SELECT * FROM user WHERE username  = '$username' AND aktif = 'Y' ");
+    $tahun = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM tahun ORDER BY nama DESC LIMIT 1 "));
     //$cek = mysqli_num_rows($sql);
     if (mysqli_num_rows($sql) == 0) {
         //jika salah
@@ -25,6 +26,7 @@ if (isset($_POST["log"])) {
             $_SESSION['id_user'] = $dt['id_user'];
             $_SESSION['nama'] = $dt['nama'];
             $_SESSION['level'] = $dt['level'];
+            $_SESSION['tahun'] = $tahun['nama'];
 
             $host = $_SERVER['HTTP_HOST'];
             $uip = $_SERVER['REMOTE_ADDR'];

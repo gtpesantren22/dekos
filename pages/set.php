@@ -10,10 +10,7 @@ if (!empty($_FILES)) {
             "message" => "Invalid File Type"
         );
     } else {
-        if (is_uploaded_file($_FILES["backup_file"]["tmp_name"])) {
-            move_uploaded_file($_FILES["backup_file"]["tmp_name"], $_FILES["backup_file"]["name"]);
-            $response = restoreMysqlDB($_FILES["backup_file"]["name"], $conn);
-        }
+        if (is_uploaded_file($_FILES["backup_file"]["tmp_name"])) {}
     }
 }
 
