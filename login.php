@@ -6,21 +6,20 @@ if (isset($_SESSION["bunda"])) {
     header("Location: index.php");
 }
 
-$error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username']);
     $password = $_POST['password'];
 
-    // Pastikan koneksi mysqli bernama $conn sudah tersedia
-    $stmt = $conn->prepare("SELECT * FROM user WHERE username = ? AND aktif = 'Y'");
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
+    // Lindungi dari SQL Injection
+    $username = mysqli_real_escape_string($conn, $username);
 
-    $result = $stmt->get_result(); // ambil hasil query
+    $sql = "SELECT * FROM user WHERE username = '$username' AND aktif = 'Y'";
+    $result = mysqli_query($conn, $sql);
     $tahun = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM tahun ORDER BY nama DESC LIMIT 1 "));
-    if ($result->num_rows === 1) {
-        $user = $result->fetch_assoc();
+
+    if ($result && mysqli_num_rows($result) === 1) {
+        $user = mysqli_fetch_assoc($result);
 
         if (password_verify($password, $user['password'])) {
             $_SESSION['bunda'] = true;
@@ -28,9 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['nama'] = $user['nama'];
             $_SESSION['level'] = $user['level'];
             $_SESSION['tahun'] = $tahun['nama'];
-
-            // Optional: ambil tahun aktif dari database
-            // $_SESSION['tahun'] = $tahun['nama']; // pastikan $tahun didefinisikan
 
             echo '<script>document.location="index.php";</script>';
             exit;
