@@ -1,5 +1,5 @@
 <?php
-require 'function.php';
+
 $santri =  query("SELECT * FROM tb_santri ORDER by nis ASC");
 ?>
 <section class="content-header">

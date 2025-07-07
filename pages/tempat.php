@@ -1,5 +1,5 @@
 <?php
-require 'function.php';
+
 $santri =  query("SELECT * FROM tempat ORDER by kd_tmp ASC");
 ?>
 <section class="content-header">

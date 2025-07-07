@@ -1,5 +1,5 @@
 <?php
-require 'function.php';
+
 $tahapan =  query("SELECT * FROM tahapan ORDER by nama ASC");
 ?>
 <section class="content-header">

@@ -1,5 +1,5 @@
 <?php
-require 'function.php';
+
 $masuk =  query("SELECT * FROM tahun ORDER by id ASC");
 ?>
 <section class="content-header">
