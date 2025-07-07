@@ -6,39 +6,41 @@ if (isset($_SESSION["bunda"])) {
     header("Location: index.php");
 }
 
-if (isset($_POST["log"])) {
+$error = '';
 
-    $username = htmlspecialchars(mysqli_real_escape_string($conn, $_POST["username"]));
-    $password = htmlspecialchars(mysqli_real_escape_string($conn, $_POST["password"]));
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = trim($_POST['username']);
+    $password = $_POST['password'];
 
-    $sql = mysqli_query($conn, "SELECT * FROM user WHERE username  = '$username' AND aktif = 'Y' ");
+    // Pastikan koneksi mysqli bernama $conn sudah tersedia
+    $stmt = $conn->prepare("SELECT * FROM user WHERE username = ? AND aktif = 'Y'");
+    $stmt->bind_param("s", $username);
+    $stmt->execute();
+
+    $result = $stmt->get_result(); // ambil hasil query
     $tahun = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM tahun ORDER BY nama DESC LIMIT 1 "));
-    //$cek = mysqli_num_rows($sql);
-    if (mysqli_num_rows($sql) == 0) {
-        //jika salah
-        echo '<script language="javascript">alert("Username / Password tidak ditemukan!"); document.location="login.php";</script>';
-    } else {
-        //jika benar
-        $dt = mysqli_fetch_assoc($sql);
-        $ps = $dt['password'];
-        if (password_verify($password, $ps)) {
+    if ($result->num_rows === 1) {
+        $user = $result->fetch_assoc();
+
+        if (password_verify($password, $user['password'])) {
             $_SESSION['bunda'] = true;
-            $_SESSION['id_user'] = $dt['id_user'];
-            $_SESSION['nama'] = $dt['nama'];
-            $_SESSION['level'] = $dt['level'];
+            $_SESSION['id_user'] = $user['id_user'];
+            $_SESSION['nama'] = $user['nama'];
+            $_SESSION['level'] = $user['level'];
             $_SESSION['tahun'] = $tahun['nama'];
 
-            $host = $_SERVER['HTTP_HOST'];
-            $uip = $_SERVER['REMOTE_ADDR'];
-            $status = 1;
-            // $log = mysqli_query($conn, "insert into userlog(uid,username,userip,status) values('" . $dt['id_user'] . "','" . $username . "','$uip','$status')");
-            // $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+            // Optional: ambil tahun aktif dari database
+            // $_SESSION['tahun'] = $tahun['nama']; // pastikan $tahun didefinisikan
 
-            echo '<script language="javascript"> document.location="index.php";</script>';
+            echo '<script>document.location="index.php";</script>';
+            exit;
         }
     }
-}
 
+    // Jika gagal login
+    echo '<script>alert("Username / Password tidak ditemukan!"); document.location="login.php";</script>';
+    exit;
+}
 ?>
 
 <!DOCTYPE html>
