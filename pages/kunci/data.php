@@ -25,9 +25,9 @@ $bln = array("-", "Januari", "Februari", "Maret", "April", "Mei", "Juni", "July"
                         <select name="" id="" class="form-control" onchange="navigateToUrl(this)">
                             <option value="">- pilih tahun -</option>
                             <?php
-                            $sqly = mysqli_query($conn, "SELECT tahun FROM kunci GROUP BY tahun");
+                            $sqly = mysqli_query($conn, "SELECT * FROM tahun ");
                             while ($thg = mysqli_fetch_assoc($sqly)) { ?>
-                                <option value="index.php?link=pages/kunci/data&tahun=<?= $thg['tahun'] ?>"><a href=""><?= $thg['tahun'] ?></a></option>
+                                <option value="index.php?link=pages/kunci/data&tahun=<?= $thg['nama'] ?>"><a href=""><?= $thg['nama'] ?></a></option>
                             <?php } ?>
                         </select>
                     </h3>
