@@ -31,8 +31,8 @@ if (isset($_POST["log"])) {
             $host = $_SERVER['HTTP_HOST'];
             $uip = $_SERVER['REMOTE_ADDR'];
             $status = 1;
-            $log = mysqli_query($conn, "insert into userlog(uid,username,userip,status) values('" . $dt['id_user'] . "','" . $username . "','$uip','$status')");
-            $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
+            // $log = mysqli_query($conn, "insert into userlog(uid,username,userip,status) values('" . $dt['id_user'] . "','" . $username . "','$uip','$status')");
+            // $uri = rtrim(dirname($_SERVER['PHP_SELF']), '/\\');
 
             echo '<script language="javascript"> document.location="index.php";</script>';
         }
