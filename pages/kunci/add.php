@@ -39,7 +39,7 @@ $total = mysqli_fetch_assoc(mysqli_query($conn, "SELECT a.t_kos, COUNT(*) as tot
                     <h3 class="box-title">Buat Data Baru</h3>
                 </div><!-- /.box-header -->
                 <div class="box-body">
-                    <form action="" method="post">
+                    <form action="" id="form-kunci">
                         <div class="row">
                             <div class="col-md-5">
                                 <div class="form-group">
@@ -66,7 +66,7 @@ $total = mysqli_fetch_assoc(mysqli_query($conn, "SELECT a.t_kos, COUNT(*) as tot
                             </div>
                             <div class="col-md-2">
                                 <div class="form-group">
-                                    <button type="submit" name="buat" class="btn btn-primary"><i
+                                    <button type="submit" name="buat_kunci" class="btn btn-primary"><i
                                             class="fa fa-check"></i> Buat</button>
                                 </div>
                             </div>
@@ -134,34 +134,20 @@ $total = mysqli_fetch_assoc(mysqli_query($conn, "SELECT a.t_kos, COUNT(*) as tot
             "autoWidth": false
         });
     });
+    $('#form-kunci').on('submit', function(e) {
+        e.preventDefault();
+        var data = $(this).serialize()
+        $.ajax({
+            type: 'POST',
+            url: 'ajax/save_acts.php?to=add_kunci',
+            data: data,
+            dataType: 'json',
+            success: function(data) {
+                alert('Buat kunci berhasil')
+            },
+            error: function(xhr, status, error) {
+                alert(xhr.responseText);
+            }
+        })
+    })
 </script>
-
-<?php
-
-if (isset($_POST['buat'])) {
-    $bln = $_POST['bulan'];
-    $thn = $_POST['tahun'];
-
-    $cek = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM kunci WHERE bulan = $bln AND tahun = '$thn' "));
-    if ($cek > 0) {
-        echo "
-        <script>
-        alert('Maaf untuk bulan dan tahun ini sudah ada');
-        window.location = 'index.php?link=pages/kunci/add';
-        </script>
-        ";
-    } else {
-        $sql = mysqli_query($conn, "INSERT INTO kunci(nis, nama, alamat, jkl, k_formal, t_formal, kamar, komplek,  t_kos, ket, bulan, tahun) 
-        SELECT nis, nama, CONCAT(desa,'-',kec,'-',kab), jkl, k_formal, t_formal, kamar, komplek, t_kos, ket, $bln, '$thn' FROM tb_santri WHERE aktif = 'Y' ");
-
-        if ($sql) {
-            echo "
-            <script>
-            alert('Data baru berhasil dibuat');
-            window.location = 'index.php?link=pages/kunci/data';
-            </script>
-            ";
-        }
-    }
-}
-?>
