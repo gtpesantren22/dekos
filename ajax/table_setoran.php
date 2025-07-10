@@ -8,7 +8,7 @@ $hasil = mysqli_query($conn, "SELECT * FROM setor WHERE bulan = $bulan AND tahun
 $jmlSantri = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as jml FROM kunci WHERE t_kos = $tempat AND tahun = '$tahun' AND ket = 0 AND bulan = $bulan "));
 $setor = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(nominal) as total FROM setor WHERE bulan = $bulan AND tahun = '$tahun' AND t_kos = $tempat "));
 $jmlSetor = $setor['total'] != null ? $setor['total'] : 0;
-$masuk = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(nominal) as total FROM kos JOIN kunci ON kos.nis=kunci.nis WHERE kos.bulan = $bulan AND kunci.bulan = $bulan AND kunci.tahun = '$tahun' AND kunci.t_kos = $tempat "));
+$masuk = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(nominal) as total FROM kos JOIN kunci ON kos.nis=kunci.nis WHERE kos.bulan = $bulan AND kunci.bulan = $bulan AND kunci.tahun = '$tahun' AND kos.tahun = '$tahun' AND kunci.t_kos = $tempat "));
 $psr90 = (90 / 100) * ($jmlSantri['jml'] * $tarif);
 ?>
 <div class="row">
