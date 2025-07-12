@@ -10,6 +10,7 @@ $setor = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(nominal) as total FR
 $jmlSetor = $setor['total'] != null ? $setor['total'] : 0;
 $masuk = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(nominal) as total FROM kos JOIN kunci ON kos.nis=kunci.nis WHERE kos.bulan = $bulan AND kunci.bulan = $bulan AND kunci.tahun = '$tahun' AND kos.tahun = '$tahun' AND kunci.t_kos = $tempat "));
 $psr90 = (90 / 100) * ($jmlSantri['jml'] * $tarif);
+$psr30 = (30 / 100) * ($jmlSantri['jml'] * $tarif);
 ?>
 <div class="row">
     <div class="col-md-6">
@@ -31,7 +32,9 @@ $psr90 = (90 / 100) * ($jmlSantri['jml'] * $tarif);
                 <tr>
                     <td>Total Tagihan</td>
                     <td>
-                        <b class="text-info"><?= rupiah($jmlSantri['jml'] * $tarif) ?></b> - <b class="text-danger">90% (<?= rupiah($psr90) ?>)</b>
+                        <b class="text-info"><?= rupiah($jmlSantri['jml'] * $tarif) ?></b>
+                        <br>- <b class="text-danger">90% (<?= rupiah($psr90) ?>)</b>
+                        <br>- <b class="text-danger">30% (<?= rupiah($psr30) ?>)</b>
                     </td>
                 </tr>
             </table>
