@@ -8,7 +8,12 @@ $tanggal = $_POST['tanggal'];
 $via = $_POST['via'];
 $tempat = $_POST['tempat'];
 $penyetor = $_POST['penyetor'];
-$sisa = $_POST['sisa'];
+
+$jmlSantri = mysqli_fetch_assoc(mysqli_query($conn, "SELECT COUNT(*) as jml FROM kunci WHERE t_kos = $tempat AND tahun = '$tahun' AND ket = 0 AND bulan = $bulan "));
+$setor = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(nominal) as total FROM setor WHERE bulan = $bulan AND tahun = '$tahun' AND t_kos = $tempat "));
+$jmlSetor = $setor['total'] != null ? $setor['total'] : 0;
+$psr90 = (90 / 100) * ($jmlSantri['jml'] * $tarif);
+$sisa = $psr90 - $jmlSetor;
 
 if ($nominal > $sisa) {
     echo json_encode(['status' => 'error', 'message' => 'Nominal melebihi batas']);

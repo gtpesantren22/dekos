@@ -92,9 +92,69 @@
             $tkos = mysqli_fetch_assoc(mysqli_query($conn, "SELECT * FROM tempat WHERE kd_tmp = $tempat  "));
 
         ?>
-            <div id="data-setoran"></div>
 
-            
+            <div class="col-md-7">
+                <div class="box box-primary">
+                    <div class="box-header">
+                        <h3 class="box-title">
+                            Data Pilihan :
+
+                            <p class="label label-warning"><?= $bln[$bulan]; ?></p> -
+                            <p class="label label-info"><?= $tkos['nama']; ?></p>
+                        </h3>
+                    </div>
+                    <div class="box-body">
+                        <div id="data-setoran"></div>
+                    </div><!-- /.box-body -->
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="box">
+                    <div class="box-header with-border">
+                        <h3 class="box-title">Input Setoran</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body">
+                        <form action="" method="post" id="simpan-form" class="form-horizontal">
+                            <input type="hidden" name="tahun" value="<?= $tahun_ajaran ?>">
+                            <input type="hidden" name="tempat" value="<?= $tempat ?>">
+                            <input type="hidden" name="penyetor" value="<?= $nama ?>">
+                            <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-2 control-label">Bulan</label>
+                                <div class="col-sm-10">
+                                    <input type="number" name="bulan" class="form-control" id="inputEmail3" value="<?= $bulan ?>" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">Tanggal</label>
+                                <div class="col-sm-10">
+                                    <input type="date" name="tanggal" class="form-control" id="" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">Nominal</label>
+                                <div class="col-sm-10">
+                                    <input type="text" name="nominal" class="form-control" id="rupiah" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label">Metode</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control" name="via" required>
+                                        <option value="Tunai">Tunai</option>
+                                        <option value="Transfer">Transfer</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="" class="col-sm-2 control-label"></label>
+                                <div class="col-sm-10">
+                                    <button type="submit" class="btn btn-sm btn-success"><i class="fa fa-save"></i> Simpan</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div>
             <!-- Toastr CSS -->
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
             <!-- Toastr JS -->
@@ -146,6 +206,7 @@
                             console.log('Response Text:', xhr.responseText);
                         }
                     })
+
                 })
 
                 function delItem(id) {
