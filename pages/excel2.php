@@ -3,7 +3,6 @@ require_once "Excel.class.php";
 
 #koneksi ke mysql
 //$mysqli = new mysqli("localhost", "root", "", "psb21");
-$mysqli = new mysqli("localhost", "u9048253_dwk", "PesantrenDWKIT2021", "u9048253_bendahara");
 if ($mysqli->connect_error) {
 	die('Connect Error (' . $mysqli->connect_error . ') ');
 }
