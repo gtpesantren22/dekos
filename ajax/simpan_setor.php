@@ -19,7 +19,7 @@ if ($nominal > $sisa) {
     echo json_encode(['status' => 'error', 'message' => 'Nominal melebihi batas']);
 } else {
     $cek = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM setor WHERE tahun = '$tahun' AND bulan = $bulan AND t_kos = $tempat "));
-    $dari = !$cek || $cek == 0 ? 'Setoran ke - 1' : 'Setoran ke - ' . $cek + 1;
+    $dari = !$cek || $cek == 0 ? 'Setoran ke - 1' : 'Setoran ke - ' . ($cek + 1);
     $save = mysqli_query($conn, "INSERT INTO setor (nama,dari,sampai,bulan,tahun,pa,pi,nominal,tgl,penyetor,t_kos,via) VALUES ('Setoran','$dari','$dari','$bulan','$tahun',0,0,$nominal,'$tanggal','$penyetor',$tempat,'$via')");
     if ($save) {
         echo json_encode(['status' => 'success', 'message' => 'Simpan berhasil']);
