@@ -1,6 +1,6 @@
 <?php
 
-$dekos =  query("SELECT A.id, nominal, bulan, tahun, tgl, nama, jkl FROM kos A JOIN tb_santri B ON A.nis=B.nis WHERE tahun = '2024/2025' ORDER BY tgl ASC");
+$dekos =  query("SELECT A.id, nominal, bulan, tahun, tgl, nama, jkl FROM kos A JOIN tb_santri B ON A.nis=B.nis WHERE tahun = '$tahun_ajaran' ORDER BY tgl ASC");
 // $dekos =  query("SELECT a.nominal, a.bulan, a.tahun, a.tgl, b.nama, b.nis, b.k_formal, b.t_formal, b.jkl FROM kos AS a 
 // INNER JOIN tb_santri AS b ON a.nis = b.nis WHERE a.bulan = 10  AND b.jkl = 'Perempuan' AND a.nominal = 120000 ");
 $setor =  query("SELECT * FROM setor ORDER BY tgl DESC LIMIT 5");
