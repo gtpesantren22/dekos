@@ -1,9 +1,4 @@
 <?php
-
-$dekos =  query("SELECT A.id, nominal, bulan, tahun, tgl, nama, jkl FROM kos A JOIN tb_santri B ON A.nis=B.nis WHERE tahun = '$tahun_ajaran' ORDER BY tgl ASC");
-// $dekos =  query("SELECT a.nominal, a.bulan, a.tahun, a.tgl, b.nama, b.nis, b.k_formal, b.t_formal, b.jkl FROM kos AS a 
-// INNER JOIN tb_santri AS b ON a.nis = b.nis WHERE a.bulan = 10  AND b.jkl = 'Perempuan' AND a.nominal = 120000 ");
-$setor =  query("SELECT * FROM setor ORDER BY tgl DESC LIMIT 5");
 $jum = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(nominal) AS total FROM kos"));
 $jum2 = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(nominal) AS total FROM setor"));
 ?>
@@ -59,27 +54,16 @@ $jum2 = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(nominal) AS total FRO
                                 <tr>
                                     <th>No</th>
                                     <th>Nama</th>
+                                    <th>Tempat Kos</th>
                                     <th>Nominal</th>
                                     <th>Untuk Bulan</th>
                                     <th>Tgl Bayar</th>
+                                    <th>Ket</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $i = 1; ?>
-                                <?php foreach ($dekos as $r) : ?>
-                                    <tr>
-                                        <td><?= $i; ?></td>
-                                        <td><?= $r["nama"]; ?> </td>
-                                        <td><?= rupiah($r["nominal"]); ?></td>
-                                        <td><?= bulan($r['bulan']); ?> <?= $r["tahun"]; ?></td>
-                                        <td><?= date("d-m-Y", strtotime($r["tgl"])); ?> </td>
-                                        <td><a href="<?= 'index.php?link=pages/dekos/edit&id=' . $r["id"]; ?>"><button type="submit" name="edit" class="btn btn-warning btn-xs">Edit</button></a>
-                                            <a href="<?= 'index.php?link=pages/dekos/del&id=' . $r["id"]; ?>" onclick="return confirm('Yakin Akan dihapus ?')"><button class="btn btn-danger btn-xs">Hapus</button></a>
-                                        </td>
-                                    </tr>
-                                    <?php $i++; ?>
-                                <?php endforeach; ?>
+                                <!-- Data will be loaded via AJAX -->
                             </tbody>
                         </table>
                     </div>
@@ -90,14 +74,23 @@ $jum2 = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(nominal) AS total FRO
 </section><!-- /.content -->
 <script>
     $(function() {
-        $("#example1").DataTable();
-        $('#example2').DataTable({
-            "paging": true,
-            "lengthChange": false,
-            "searching": false,
-            "ordering": true,
-            "info": true,
-            "autoWidth": false
+        $("#example1").DataTable({
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                "url": "ajax/dekos_data.php",
+                "type": "POST"
+            },
+            "columns": [
+                { "orderable": false }, // No
+                { "orderable": true },  // Nama
+                { "orderable": true },  // Tempat Kos
+                { "orderable": true },  // Nominal
+                { "orderable": true },  // Untuk Bulan
+                { "orderable": true },  // Tgl Bayar
+                { "orderable": true },  // Ket
+                { "orderable": false }  // Aksi
+            ]
         });
     });
 </script>
