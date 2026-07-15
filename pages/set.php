@@ -73,12 +73,16 @@ function restoreMysqlDB($filePath, $conn)
     <div class="row">
         <?php
         if (!empty($response)) {
+            $alert_class = ($response["type"] == "success") ? "alert-success" : "alert-danger";
+            $alert_icon = ($response["type"] == "success") ? "fa-check" : "fa-ban";
+            $alert_title = ($response["type"] == "success") ? "Sukses!" : "Gagal!";
+            $alert_msg = isset($response["message"]) ? $response["message"] : "Operasi berhasil dilakukan.";
         ?>
         <div class="col-md-12">
-            <div class="alert alert-success alert-dismissable response <?php echo $response["type"]; ?>">
+            <div class="alert <?php echo $alert_class; ?> alert-dismissable response">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                <h4> <i class="icon fa fa-check"></i> Restore Database Sukses!</h4>
-                Database sudah diperbarui. Silahkan cek kembali dikhawatirkan ada kesalahan Input data.
+                <h4> <i class="icon fa <?php echo $alert_icon; ?>"></i> <?php echo $alert_title; ?></h4>
+                <?php echo $alert_msg; ?>
             </div>
         </div>
         <?php

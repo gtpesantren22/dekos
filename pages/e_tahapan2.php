@@ -1,5 +1,5 @@
 <?php
-include('function.php');
+if (!function_exists('query')) { include('function.php'); }
 $id = $_GET["id"];
 $row = query("SELECT * FROM tb_santri WHERE nis = $id ")[0];
 ?>
