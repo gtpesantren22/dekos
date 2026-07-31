@@ -139,9 +139,9 @@
                             mysqli_query($conn, "DROP VIEW tahap");
                             mysqli_query($conn, "DROP VIEW santri1");
 
-                            mysqli_query($conn, "CREATE VIEW syah1 AS SELECT a.nis, SUM(a.nominal) AS bayar, b.nama, b.k_formal, b.t_formal, b.stts FROM syahriah AS a INNER JOIN tb_santri AS b ON a.nis=b.nis WHERE b.k_formal = '$kelas' AND b.t_formal = '$tingkat' AND b.jkl = '$jkl' AND a.tahun = '$tahun' GROUP BY nis");
+                            mysqli_query($conn, "CREATE VIEW syah1 AS SELECT a.nis, SUM(a.nominal) AS bayar, b.nama, b.k_formal, b.t_formal, b.stts FROM syahriah AS a INNER JOIN tb_santri AS b ON a.nis=b.nis WHERE b.k_formal = '$kelas' AND b.t_formal = '$tingkat' AND b.jkl = '$jkl' AND a.tahun = '$tahun' AND b.aktif = 'Y' GROUP BY nis");
                             mysqli_query($conn, "CREATE VIEW tahap AS SELECT * FROM tahapan WHERE nama = '$tahap' ");
-                            mysqli_query($conn, "CREATE VIEW santri1 AS SELECT a.nis, a.nama, a.k_formal, a.t_formal, b.nominal FROM tb_santri AS a INNER JOIN tahapan AS b ON a.stts=b.stts WHERE k_formal = '$kelas' AND t_formal = '$tingkat' AND jkl = '$jkl' AND b.nama = '$tahap' ");
+                            mysqli_query($conn, "CREATE VIEW santri1 AS SELECT a.nis, a.nama, a.k_formal, a.t_formal, b.nominal FROM tb_santri AS a INNER JOIN tahapan AS b ON a.stts=b.stts WHERE k_formal = '$kelas' AND t_formal = '$tingkat' AND jkl = '$jkl' AND b.nama = '$tahap' AND a.aktif = 'Y' ");
 
                             $lunas = mysqli_query($conn, "SELECT a.nis, a.bayar, a.stts, a.nama, a.k_formal, a.t_formal, b.nominal, b.stts FROM syah1 AS a INNER JOIN tahap AS b ON a.stts=b.stts WHERE a.bayar >= b.nominal ORDER BY a.nama ASC");
                             $belum = mysqli_query($conn, "SELECT a.nis, a.bayar, a.stts, a.nama, a.k_formal, a.t_formal, b.nominal, b.stts FROM syah1 AS a INNER JOIN tahap AS b ON a.stts=b.stts WHERE a.bayar < b.nominal ORDER BY a.nama ASC ");

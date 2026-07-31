@@ -1,7 +1,7 @@
 <?php
 include 'function.php';
 $nis = $_GET['nis'];
-$query = mysqli_query($conn, "SELECT * FROM tb_santri WHERE no ='$nis'");
+$query = mysqli_query($conn, "SELECT * FROM tb_santri WHERE no ='$nis' AND aktif = 'Y'");
 $mahasiswa = mysqli_fetch_array($query);
 $data = array(
     'nama'      =>  $mahasiswa['nama'],

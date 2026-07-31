@@ -3,7 +3,7 @@ include "function.php"; // Load file koneksi.php
 
 $nis = $_POST['nis']; // Ambil data NIS yang dikirim lewat AJAX
 
-$query = mysqli_query($conn, "SELECT * FROM tb_santri WHERE no ='" . $nis . "'"); // Tampilkan data siswa dengan NIS tersebut
+$query = mysqli_query($conn, "SELECT * FROM tb_santri WHERE no ='" . $nis . "' AND aktif = 'Y'"); // Tampilkan data siswa dengan NIS tersebut
 $row = mysqli_num_rows($query); // Hitung ada berapa data dari hasil eksekusi $query
 
 if ($row > 0) { // Jika data lebih dari 0

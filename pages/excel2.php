@@ -10,7 +10,7 @@ if ($mysqli->connect_error) {
 
 #ambil data
 $query = "SELECT nis, nik, nama, tempat, tanggal, jkl, desa, kec, kab, k_formal, t_formal, k_madin, r_madin, 
-komplek, kamar, bapak, ibu, hp FROM tb_santri";
+komplek, kamar, bapak, ibu, hp FROM tb_santri WHERE aktif = 'Y'";
 
 $sql = $mysqli->query($query);
 $arrmhs = array();

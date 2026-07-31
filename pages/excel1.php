@@ -9,7 +9,7 @@ if ($mysqli->connect_error) {
 #akhir koneksi
 
 #ambil data
-$query = "SELECT * FROM tb_santri";
+$query = "SELECT * FROM tb_santri WHERE aktif = 'Y'";
 
 $sql = $mysqli->query($query);
 $arrmhs = array();

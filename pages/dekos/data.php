@@ -52,9 +52,9 @@
             $tmp = array("-", "Ny. Jamilah", "Gus Zaini", "Ny. Farihah", "Ny. Zahro", "Ny. Sa'adah", "Ny. Mamjudah", "Ny. Naily Zulfa", "Ny. Lathifah");
             $kt = array("-", "Ustad", "Khaddam", "Gratis", "Berhenti");
 
-            $data = query("SELECT * FROM tb_santri WHERE t_kos = $tempat ");
-            $jum = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM tb_santri WHERE t_kos = $tempat "));
-            $jum2 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM tb_santri WHERE t_kos = $tempat AND ket != 0 "));
+            $data = query("SELECT * FROM tb_santri WHERE t_kos = $tempat AND aktif = 'Y' ");
+            $jum = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM tb_santri WHERE t_kos = $tempat AND aktif = 'Y' "));
+            $jum2 = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM tb_santri WHERE t_kos = $tempat AND ket != 0 AND aktif = 'Y' "));
 
         ?>
             <form action="" method="post">

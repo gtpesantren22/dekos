@@ -1,6 +1,6 @@
 <?php
 
-$santri =  query("SELECT * FROM tb_santri ORDER by nis ASC");
+$santri =  query("SELECT * FROM tb_santri WHERE aktif = 'Y' ORDER by nis ASC");
 $places = query("SELECT kd_tmp, nama FROM tempat");
 $t = array();
 $t[0] = '';

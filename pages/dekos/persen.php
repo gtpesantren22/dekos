@@ -82,10 +82,10 @@
         mysqli_query($conn, "DROP VIEW rekap2");
 
         mysqli_query($conn, "CREATE VIEW rekap AS SELECT SUM(a.nominal) AS jml, a.bulan, a.tahun, b.nama, b.nis, b.k_formal, b.t_formal, b.jkl FROM kos AS a 
-                                   INNER JOIN tb_santri AS b ON a.nis = b.nis WHERE a.bulan = $bulan AND a.tahun = '$tahun' AND ket = 0 GROUP BY nis ORDER BY nominal ASC");
+                                   INNER JOIN tb_santri AS b ON a.nis = b.nis WHERE a.bulan = $bulan AND a.tahun = '$tahun' AND b.ket = 0 AND b.aktif = 'Y' GROUP BY nis ORDER BY nominal ASC");
 
-        mysqli_query($conn, "CREATE VIEW rekap2 AS SELECT nama, nis, k_formal, t_formal, jkl FROM tb_santri WHERE ket = 0 ");
-        $san = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM tb_santri WHERE ket = 0 "));
+        mysqli_query($conn, "CREATE VIEW rekap2 AS SELECT nama, nis, k_formal, t_formal, jkl FROM tb_santri WHERE ket = 0 AND aktif = 'Y' ");
+        $san = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM tb_santri WHERE ket = 0 AND aktif = 'Y' "));
 
         $lunas = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM rekap WHERE jml >= 300000 "));
         $belum = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM rekap WHERE jml < 300000 "));
