@@ -37,7 +37,7 @@ $santri =  query("SELECT * FROM tb_santri WHERE aktif = 'Y' ORDER by nis ASC");
                     <h3 class="box-title">Form Input Data</h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-                <form class="form" id="myform" action="" method="post">
+                <form class="form" id="myform" action="index.php?link=pages/dekos/add" method="post">
                     <div class="box-body">
                         <div class="col-md-2">
                             <label for="">Tahun </label>
@@ -143,7 +143,7 @@ $santri =  query("SELECT * FROM tb_santri WHERE aktif = 'Y' ORDER by nis ASC");
                     <div class="box-header with-border">
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    <form class="form-horizontal" action="" method="post">
+                    <form class="form-horizontal" action="index.php?link=pages/dekos/add" method="post">
                         <input type="hidden" name="nis" value="<?= $nis; ?>">
                         <input type="hidden" name="penerima" value="<?= $_SESSION['nama']; ?>">
                         <div class="box-body">
@@ -211,7 +211,7 @@ $santri =  query("SELECT * FROM tb_santri WHERE aktif = 'Y' ORDER by nis ASC");
                     <div class="box-header with-border">
                     </div><!-- /.box-header -->
                     <!-- form start -->
-                    <form class="form-horizontal" action="" method="post">
+                    <form class="form-horizontal" action="index.php?link=pages/dekos/add" method="post">
                         <div class="box-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped">

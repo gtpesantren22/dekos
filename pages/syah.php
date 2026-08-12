@@ -43,7 +43,7 @@ $santri =  query("SELECT * FROM tb_santri WHERE aktif = 'Y' ORDER by nis ASC");
                 <!-- form start -->
                 <div class="box-body">
                     <input type="hidden" name="kasir" value="<?= $_SESSION['nama']; ?>">
-                    <form method="post" action="">
+                    <form method="post" action="index.php?link=pages/syah">
                         <div class="col-md-2">
                             <label for="">Tahun </label>
                             <select name="tahun" id="" class="form-control" required>
@@ -101,7 +101,7 @@ $santri =  query("SELECT * FROM tb_santri WHERE aktif = 'Y' ORDER by nis ASC");
 
                     ?>
                         <hr>
-                        <form action="" method="post">
+                        <form action="index.php?link=pages/syah" method="post">
                             <input type="hidden" name="nis" value="<?= $data['nis'] ?>">
                             <input type="hidden" name="penerima" value="<?= $_SESSION['nama']; ?>">
 
@@ -367,7 +367,7 @@ $santri =  query("SELECT * FROM tb_santri WHERE aktif = 'Y' ORDER by nis ASC");
                 <h4 class="modal-title">Tambah Data Tahapan</h4>
             </div>
             <div class="modal-body">
-                <form action="" method="post">
+                <form action="index.php?link=pages/syah" method="post">
                     <div class="table-responsive">
                         <table id="example1_bst" class="table table-bordered table-striped">
                             <thead>

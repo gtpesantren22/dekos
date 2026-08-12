@@ -9,9 +9,13 @@ $nama = $_SESSION['nama'];
 $level = $_SESSION['level'];
 $tahun_ajaran = $_SESSION['tahun'];
 
-if (isset($_POST['tahun'])) {
-    $_SESSION['tahun'] = $_POST['tahun'];
-    header("Location: " . $_SERVER['PHP_SELF']); // reload halaman
+if (isset($_POST['ganti_tahun'])) {
+    $_SESSION['tahun'] = $_POST['ganti_tahun'];
+    if (!empty($_GET['link'])) {
+        header("Location: index.php?link=" . urlencode($_GET['link']));
+    } else {
+        header("Location: " . $_SERVER['PHP_SELF']);
+    }
     exit;
 }
 ?>
@@ -94,7 +98,7 @@ if (isset($_POST['tahun'])) {
                             <ul class="dropdown-menu">
                                 <li class="header">Tahun Aktif : <?= $tahun_ajaran ?></li>
                                 <form id="formTahun" method="post" action="">
-                                    <input type="hidden" name="tahun" id="inputTahun">
+                                    <input type="hidden" name="ganti_tahun" id="inputTahun">
                                 </form>
                                 <li>
                                     <!-- inner menu: contains the actual data -->
