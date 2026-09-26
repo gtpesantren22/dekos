@@ -49,7 +49,7 @@ $jum2 = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(nominal) AS total FRO
                 </div><!-- /.box-header -->
                 <div class="box-body">
                     <div class="table-responsive">
-                        <table id="example1" class="table table-bordered table-striped">
+                        <table id="dataDekosan" class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -74,22 +74,37 @@ $jum2 = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(nominal) AS total FRO
 </section><!-- /.content -->
 <script>
     $(function() {
-        $("#example1").DataTable({
+        $("#dataDekosan").DataTable({
             "processing": true,
             "serverSide": true,
             "ajax": {
                 "url": "ajax/dekos_data.php",
                 "type": "POST"
             },
-            "columns": [
-                { "orderable": false }, // No
-                { "orderable": true },  // Nama
-                { "orderable": true },  // Tempat Kos
-                { "orderable": true },  // Nominal
-                { "orderable": true },  // Untuk Bulan
-                { "orderable": true },  // Tgl Bayar
-                { "orderable": true },  // Ket
-                { "orderable": false }  // Aksi
+            "columns": [{
+                    "orderable": false
+                }, // No
+                {
+                    "orderable": true
+                }, // Nama
+                {
+                    "orderable": true
+                }, // Tempat Kos
+                {
+                    "orderable": true
+                }, // Nominal
+                {
+                    "orderable": true
+                }, // Untuk Bulan
+                {
+                    "orderable": true
+                }, // Tgl Bayar
+                {
+                    "orderable": true
+                }, // Ket
+                {
+                    "orderable": false
+                } // Aksi
             ]
         });
     });

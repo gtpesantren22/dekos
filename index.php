@@ -196,7 +196,7 @@ if (isset($_POST['ganti_tahun'])) {
                         </a>
                         <ul class="treeview-menu">
                             <li><a href="index.php?link=pages/dekos/dekos"><i class="fas fa-ribbon"></i>
-                                    Input Setoran</a></li>
+                                    Input Pembayaran Dekosan</a></li>
                             <li><a href="index.php?link=pages/dekos/roll"><i class="fas fa-ribbon"></i>
                                     Rolling Data</a></li>
                         </ul>
