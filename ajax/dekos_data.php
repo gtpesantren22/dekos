@@ -74,8 +74,8 @@ while ($row = mysqli_fetch_assoc($queryData)) {
     $nestedData[] = $kt[$row['ket']];
 
     // Tombol Aksi
-    $btnEdit = '<a href="index.php?link=pages/dekos/edit&id=' . $row["id"] . '"><button type="submit" name="edit" class="btn btn-warning btn-xs">Edit</button></a>';
-    $btnHapus = ' <a href="index.php?link=pages/dekos/del&id=' . $row["id"] . '" onclick="return confirm(\'Yakin Akan dihapus ?\')"><button class="btn btn-danger btn-xs">Hapus</button></a>';
+    $btnEdit = '<a href="index.php?link=pages/dekos/edit&id=' . $row["id"] . '" class="btn btn-warning btn-xs"><i class="fa fa-edit"></i> Edit</a> ';
+    $btnHapus = '<button type="button" class="btn btn-danger btn-xs btn-delete-dekos" data-id="' . $row["id"] . '" title="Hapus"><i class="fa fa-trash"></i> Hapus</button>';
     $nestedData[] = $btnEdit . $btnHapus;
 
     $data[] = $nestedData;

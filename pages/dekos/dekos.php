@@ -74,7 +74,7 @@ $jum2 = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(nominal) AS total FRO
 </section><!-- /.content -->
 <script>
     $(function() {
-        $("#dataDekosan").DataTable({
+        var table = $("#dataDekosan").DataTable({
             "processing": true,
             "serverSide": true,
             "ajax": {
@@ -107,5 +107,83 @@ $jum2 = mysqli_fetch_assoc(mysqli_query($conn, "SELECT SUM(nominal) AS total FRO
                 } // Aksi
             ]
         });
+
+        // Event handler tombol hapus
+        $(document).on('click', '.btn-delete-dekos', function(e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+            var confirmMsg = 'Apakah Anda yakin ingin menghapus data pembayaran dekosan ini?';
+
+            if (typeof Swal !== 'undefined') {
+                Swal.fire({
+                    title: 'Konfirmasi Hapus',
+                    text: confirmMsg,
+                    type: 'warning',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Ya, Hapus!',
+                    cancelButtonText: 'Batal'
+                }).then(function(result) {
+                    if (result.value || result.isConfirmed) {
+                        executeDelete(id);
+                    }
+                });
+            } else {
+                if (confirm(confirmMsg)) {
+                    executeDelete(id);
+                }
+            }
+        });
+
+        function executeDelete(id) {
+            $.ajax({
+                type: 'POST',
+                url: 'ajax/del_dekos.php',
+                data: { id: id },
+                dataType: 'json',
+                success: function(response) {
+                    if (response.status === 'success') {
+                        if (typeof Swal !== 'undefined') {
+                            Swal.fire({
+                                type: 'success',
+                                icon: 'success',
+                                title: 'Terhapus!',
+                                text: response.message,
+                                timer: 1500,
+                                showConfirmButton: false
+                            });
+                        } else {
+                            alert(response.message);
+                        }
+                        table.ajax.reload(null, false);
+                    } else {
+                        if (typeof Swal !== 'undefined') {
+                            Swal.fire({
+                                type: 'error',
+                                icon: 'error',
+                                title: 'Gagal!',
+                                text: response.message
+                            });
+                        } else {
+                            alert('Gagal: ' + response.message);
+                        }
+                    }
+                },
+                error: function(xhr, status, error) {
+                    if (typeof Swal !== 'undefined') {
+                        Swal.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: 'Error!',
+                            text: 'Terjadi kesalahan sistem saat menghapus data.'
+                        });
+                    } else {
+                        alert('Terjadi kesalahan sistem saat menghapus data.');
+                    }
+                }
+            });
+        }
     });
 </script>

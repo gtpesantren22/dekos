@@ -248,7 +248,7 @@ $(document).ready(function() {
                 confirmButtonText: 'Ya, Hapus!',
                 cancelButtonText: 'Batal'
             }).then((result) => {
-                if (result.isConfirmed) {
+                if (result.value || result.isConfirmed) {
                     executeDelete(id);
                 }
             });
