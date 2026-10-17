@@ -27,7 +27,7 @@ $ket = array('Bayar', 'Ust/Usdtz', 'Khaddam', 'Gratis', 'Berhenti', 'Sakit');
         <br>
         <table cellspacing="5" cellpadding="5">
             <tr>
-                <th rowspan="7"><img src="" alt="" height="130px" width="100px"></th>
+                <th rowspan="6"><img src="" alt="" height="130px" width="100px"></th>
                 <th style="padding: 3px 10px">NIS</th>
                 <th style="padding: 3px 10px">:</th>
                 <th style="padding: 3px 10px"><?= htmlspecialchars($data && $data['nis'] != '' ? $data['nis'] : '-') ?></th>
@@ -46,11 +46,6 @@ $ket = array('Bayar', 'Ust/Usdtz', 'Khaddam', 'Gratis', 'Berhenti', 'Sakit');
                 <th style="padding: 3px 10px">Alamat</th>
                 <th style="padding: 3px 10px">:</th>
                 <th style="padding: 3px 10px"><?= htmlspecialchars($data && $data['desa'] != '' ? $data['desa'] : '-') ?> - <?= htmlspecialchars($data && $data['kec'] != '' ? $data['kec'] : '-') ?> - <?= htmlspecialchars($data && $data['kab'] != '' ? $data['kab'] : '-') ?></th>
-            </tr>
-            <tr>
-                <th style="padding: 3px 10px">Kamar</th>
-                <th style="padding: 3px 10px">:</th>
-                <th style="padding: 3px 10px"><?= htmlspecialchars($data && $data['kamar'] != '' ? $data['kamar'] : '-') ?> / <?= htmlspecialchars($data && $data['komplek'] != '' ? $data['komplek'] : '-') ?></th>
             </tr>
             <tr>
                 <th style="padding: 3px 10px">Dekos</th>
