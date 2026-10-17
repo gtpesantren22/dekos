@@ -19,6 +19,7 @@ if (!$data) {
 }
 
 $tm = array("-", "Ny. Jamilah", "Gus Zaini", "Ny. Farihah", "Ny. Zahro", "Ny. Sa'adah", "Ny. Mamjudah", "Ny. Naily Z.", "Ny. Lathifah");
+$ket = array('Bayar', 'Ust/Usdtz', 'Khaddam', 'Gratis', 'Berhenti', 'Sakit');
 ?>
 <div class="col-md-6">
     <div class="callout callout-success">
@@ -26,7 +27,7 @@ $tm = array("-", "Ny. Jamilah", "Gus Zaini", "Ny. Farihah", "Ny. Zahro", "Ny. Sa
         <br>
         <table cellspacing="5" cellpadding="5">
             <tr>
-                <th rowspan="6"><img src="" alt="" height="130px" width="100px"></th>
+                <th rowspan="7"><img src="" alt="" height="130px" width="100px"></th>
                 <th style="padding: 3px 10px">NIS</th>
                 <th style="padding: 3px 10px">:</th>
                 <th style="padding: 3px 10px"><?= htmlspecialchars($data && $data['nis'] != '' ? $data['nis'] : '-') ?></th>
@@ -55,6 +56,11 @@ $tm = array("-", "Ny. Jamilah", "Gus Zaini", "Ny. Farihah", "Ny. Zahro", "Ny. Sa
                 <th style="padding: 3px 10px">Dekos</th>
                 <th style="padding: 3px 10px">:</th>
                 <th style="padding: 3px 10px"><?= htmlspecialchars($data && $data['t_kos'] != '' ? $tm[$data['t_kos']] : '-') ?></th>
+            </tr>
+            <tr>
+                <th style="padding: 3px 10px">Ket</th>
+                <th style="padding: 3px 10px">:</th>
+                <th style="padding: 3px 10px"><?= htmlspecialchars($data && $data['ket'] != '' ? $ket[$data['ket']] : '-') ?></th>
             </tr>
             <tr>
                 <th style="padding: 3px 10px">&nbsp;</th>
